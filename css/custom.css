@@ -552,7 +552,7 @@ path {
 .bread-crumb { 
   list-style: none; 
   overflow: hidden; 
-  font: 18px Sans-Serif;
+  font: 11px Sans-Serif;
 }
 .bread-crumb li { 
   float: left; 
@@ -560,7 +560,7 @@ path {
 .bread-crumb li a {
   color: white;
   text-decoration: none; 
-  padding: 10px 0 10px 65px;
+  padding: 5px 0 5px 40px;
   background: #00b0f0; /* fallback color */
   background: hsla(34,85%,35%,1); 
   position: relative; 
