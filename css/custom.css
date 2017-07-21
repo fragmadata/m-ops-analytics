@@ -479,6 +479,7 @@ path {
     margin-left:20px;
 }
 .header-bar{
+    position: relative;
     background-color: #00b0f0;
     padding:10px;
     width:100%;
@@ -505,6 +506,9 @@ path {
     position: relative;
     padding:7px;
 }
+.tile-md{
+    height:230px;
+}
 .tile-left{
     background-color: #c55a11;
 }
@@ -525,4 +529,22 @@ path {
     position: absolute;
     right: 7px;
     bottom: 7px;
+}
+.top-right{
+    position: absolute;
+    right:30px;
+}
+.middle-right{
+    position: absolute;
+    top:35%;
+    right:50px;
+}
+.bottom-left-content{
+    display: block;
+    padding:10px;
+}
+.middle-right-content{
+    display: inline;
+    padding:3px;
+    padding-right:10px;
 }

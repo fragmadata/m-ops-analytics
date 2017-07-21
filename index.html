@@ -70,20 +70,34 @@
                         </thead>
                         <tbody id="tableBody">
                             <script type="text/template" id="tableBodyTemplate">
-                                <% _.each(rows,function(row){ %>
-                                    <tr>
-                                        <% _.each(row,function(col){
-                                            var style="";
-                                            if(col==="103%" || col == "106%") 
-                                                style = "background-color:#92d050";
-                                            else if(col === "78%" || col == "81%")
-                                                style = "background-color:#c55a11";
-                                            %>
-                                                <td style=<%= style %>><%= col %></td>
-                                        <% }); %>
-                                    </tr>
+                                <% 
+                                    _.each(rows,function(row){  
+                                %>
+                                <tr>
+                                    <% 
+                                        _.each(row,function(col,index){
+                                            if(index==0){
+                                    %>
+                                    
+                                    <td><a href="employee.html"><%= col %> </a> </td>             
+                                    
+                                    <% 
+                                        return;
+                                        } 
+                                        var style="";
+                                        if(col==="103%" || col == "106%") 
+                                            style = "background-color:#92d050";
+                                        else if(col === "78%" || col == "81%")
+                                            style = "background-color:#c55a11";
+                                    %>
+                                    
+                                    <td style=<%= style %>><%= col %></td>
+                                    
+                                    <% }); %>
+                                </tr>
+                                
                                 <% }); %>
-                            </script>    
+                            </script>
                         </tbody>
                     </table>
                     <div class="row">
