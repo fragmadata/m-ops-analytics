@@ -1,0 +1,54 @@
+.side-bar{
+    background-color: #ffd965;
+}
+#retailTree{
+    margin-left:20px;
+}
+.header-bar{
+    background-color: #00b0f0;
+    padding:10px;
+    width:100%;
+    text-align: center;
+    color:white;
+    display: block;
+}
+.table > thead > tr > th{
+    padding:10px !important; 
+    background-color: #f2f2f2;
+    border: none;
+    text-align: center;
+}
+.table > tbody > tr > td{
+    padding:7px !important;
+    text-align: center;
+    border:none;
+}
+.tile{
+    width:100%;
+    height:100px;
+    margin:10px;
+    color:white;
+    position: relative;
+    padding:7px;
+}
+.tile-left{
+    background-color: #c55a11;
+}
+.tile-right{
+    background-color: #548135;
+}
+.tile-down{
+    background-color: #0070c0;
+    height:150px;
+    padding-left:20px;
+}
+.bottom-left{
+    position: absolute;
+    left:7px;
+    bottom:7px;;
+}
+.bottom-right{
+    position: absolute;
+    right: 7px;
+    bottom: 7px;
+}

@@ -1,0 +1,16 @@
+.navbar-center{
+    position: absolute;
+    left:0;
+    width:100%;
+    text-align: center;
+    margin: 0 auto;
+}
+.navbar-yellow{
+    background-color: #ffc000;
+}
+.sidebar-left{
+    background-color: #ffd965;
+    position: absolute;
+    height:90%;
+    bottom: 0;
+}
