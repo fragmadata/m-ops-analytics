@@ -608,6 +608,8 @@ path {
 .bread-crumb li:nth-child(4) a:after { border-left-color: hsla(34,85%,65%,1); }
 .bread-crumb li:nth-child(5) a       { background:        hsla(34,85%,75%,1); }
 .bread-crumb li:nth-child(5) a:after { border-left-color: hsla(34,85%,75%,1); }
+.bread-crumb li:nth-child(6) a       { background:        hsla(34,85%,85%,1); }
+.bread-crumb li:nth-child(6) a:after { border-left-color: hsla(34,85%,85%,1); }
 .bread-crumb li:last-child a {
   background: transparent !important;
   color: hsla(34,85%,35%,1);
@@ -619,4 +621,38 @@ path {
 }
 ul{
     padding-left: 0;
+}
+.toggle-card{
+    display: inline-block;
+    background: #7fdbff;
+    padding:5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    color: white;
+}
+.on{
+    background-color: #0070c0;
+    padding:4px;
+    margin-left:-5px;
+    border:2px solid black; 
+    border-color: black;
+}
+.tat-tile-container{
+    margin-top: 50px;
+}
+.tat-tile{
+    display: block;
+    height:100px;
+    margin-right: 10px;
+    text-align:center;
+    padding-top: 5px;
+    margin-bottom: 20px;
+    color:white;
+}
+.chart-container{
+    border:1px solid #999999;
+    margin-top: 20px;
+    padding:5px;
+    padding-left: 15px;
 }

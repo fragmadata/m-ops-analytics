@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="Deepak Rapolu" content="" />
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/c3/c3.css" />
+    <link rel="stylesheet" href="bower_components/jqTree/jqtree.css" />
+    <!-- endbower -->
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/c3/c3.js"></script>
+    <script src="bower_components/jqTree/tree.jquery.js"></script>
+    <script src="bower_components/matchHeight/dist/jquery.matchHeight.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <!-- endbower -->
+    <!-- inject:css -->
+
+    <link rel="stylesheet" href="css/custom.css"/>
+    <!-- endinject -->
+</head>
+<body>
+<div class="container-fluid" >
+    <div class="row">
+        <div class="col-md-2 removeCol-md-3-padding" >
+            <a href="/" style="text-decoration:none">
+                <div class="card box" style="text-align:center">
+                <img class="card-img-top logoPadding" src="img/mashreq.png" alt="LOGO"/>
+                <h5 class="header">Operational Analytics</h5>
+            </div>
+            </a>
+            <div class="card box2" class="side-bar">
+                <div class="card-img-top" class="side-bar">
+                    <div id="retailTree" class="treeHeight "></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 paddingForMobile">
+            <div>
+                <div class="card vertical-center box">
+                    <div class="col-md-4 col-md-offset-4 h3">
+                        Retail Analytics Dashboard
+                    </div>
+                    <div class="col-md-4">
+                        <span class="h4 pull-right">Santosh</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card box2">
+                    <ul class="bread-crumb">
+                        <li><a href="#">Retail</a></li>
+                        <li><a href="#">CASA</a></li>
+                        <li><a href="#">Productivity</a></li>
+                        <li><a href="/">Employees</a></li>
+                        <li><a href="employee.html">Shiv Shankar</a></li>
+                        <li><a href="#">CASA</a></li>
+                    </ul>
+                    <div class="header-bar">
+                        <h4>CASA TAT [28 hrs]</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="toggle-card">
+                                BASIC
+                            </div>
+                            <div class="toggle-card on">
+                                ADVANCED
+                            </div>
+                            <div class="chart-container">
+                                <div id="CASAHeader">CASA Application Trends</div>
+                                <div id="CASAchart"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 tat-tile-container">
+                            <div class="tat-tile" style="background:#39cccc">
+                                <div class="h4">Min TAT</div>
+                                <div class="h2">8 hrs</div>
+                            </div>
+                            <div class="tat-tile" style="background:#548135">
+                                <div class="h4">Max TAT</div>
+                                <div class="h2">28 hrs</div>
+                            </div>
+                            <div class="tat-tile" style="background:    #0070c0">
+                                <div class="h4">Total Applications Processed</div>
+                                <div class="h2">480</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/app.js"></script>
+<script>
+$(document).ready(function(){
+    var chart = c3.generate({
+            bindto : "#CASAchart",
+            padding: {
+                top:15,
+                right: 30,
+                left: 15,
+            },    
+            data:{
+                columns :[
+                    ["TAT",22,24,23,28,27,26],
+                    ["Waiting",9,5,11,14,5,10],
+                    ["Checker",5,12,15,19,20,25],
+                    ["Maker",15,20,10,18,10,14],
+                    ["Indexing",12,18,19,20,27,21]
+                ]
+            },
+            grid:{
+                y:{
+                    show:true
+                }
+            },
+            axis: {
+            y :{
+                show:false
+            },
+            x:{
+                type:'category',
+                categories : ['Jan', 'Feb', 'Mar', 'Apr','May','Jun']
+            }
+        },
+    });
+});
+</script>
+</body>
+</html>
