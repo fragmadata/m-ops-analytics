@@ -496,7 +496,7 @@ path {
 .table > tbody > tr > td{
     padding:7px !important;
     text-align: center;
-    border:none;
+    /*border:none;*/
 }
 .tile{
     width:100%;

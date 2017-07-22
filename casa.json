@@ -1,0 +1,37 @@
+{
+  "name": "Retail",
+  "children": [
+    {
+      "name": "CASA",
+      "size": 24,
+      "minTAT": 8,
+      "maxTAT": 28,
+      "applications": 160,
+      "teamSize": 8
+    },
+    {
+      "name": "SME",
+      "size": 18,
+      "minTAT": 22,
+      "maxTAT": 50,
+      "applications": 160,
+      "teamSize": 8
+    },
+    {
+      "name": "PL",
+      "size": 30,
+      "minTAT": 22,
+      "maxTAT": 50,
+      "applications": 160,
+      "teamSize": 8
+    },
+    {
+      "name": "CC",
+      "size": 36,
+      "minTAT": 22,
+      "maxTAT": 50,
+      "applications": 160,
+      "teamSize": 8
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Retail",
+    "children": [
+  {
+    "name": "Lending Operations",
+    "children": [
+      {
+        "name": "CASA",
+        "size": 90
+      },
+      {
+        "name": "SME",
+        "size": 80
+      },
+      {
+        "name": "PL",
+        "size": 72
+      },
+      {
+        "name": "CC",
+        "size": 74
+      }
+    ]
+  },
+  {
+    "name": "Liability Operations",
+    "children": [
+      {
+        "name": "CASA",
+        "size": 90
+      },
+      {
+        "name": "SME",
+        "size": 80
+      },
+      {
+        "name": "PL",
+        "size": 72
+      },
+      {
+        "name": "CC",
+        "size": 74
+      }
+    ]
+  }]}
+]

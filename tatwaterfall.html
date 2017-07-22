@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="Deepak Rapolu" content="" />
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/c3/c3.css" />
+    <link rel="stylesheet" href="bower_components/jqTree/jqtree.css" />
+    <!-- endbower -->
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/c3/c3.js"></script>
+    <script src="bower_components/jqTree/tree.jquery.js"></script>
+    <script src="bower_components/matchHeight/dist/jquery.matchHeight.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <!-- endbower -->
+    <!-- inject:css -->
+
+    <link rel="stylesheet" href="css/custom.css"/>
+    <!-- endinject -->
+    <style>
+
+.bar.total rect {
+  fill: steelblue;
+}
+
+.bar.positive rect {
+  fill: darkolivegreen;
+}
+.bar.negative rect {
+  fill: crimson;
+}
+
+.bar line.connector {
+  stroke: grey;
+  stroke-dasharray: 3;
+}
+
+.bar text {
+  fill: white;
+  font: 20px sans-serif;
+  text-anchor: middle;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+</style>
+</head>
+<body>
+<div class="container-fluid" >
+
+    <div class="row">
+        <div class="col-md-2 removeCol-md-3-padding" >
+            <div class="card box" style="text-align:center">
+                <img class="card-img-top logoPadding" src="img/mashreq.png" alt="LOGO"/>
+                <h5 class="header">Operational Analytics</h5>
+            </div>
+            <div class="card box2" class="side-bar">
+                <div class="card-img-top" class="side-bar">
+                    <div id="retailTree" class="treeHeight "></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 paddingForMobile">
+            <div>
+                <div class="card vertical-center box">
+                    <div class="col-md-4 col-md-offset-4 h3">
+                        Retail Analytics Dashboard
+                    </div>
+                    <div class="col-md-4">
+                        <span class="h4 pull-right">Santosh</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card box2">
+                    <ul class="bread-crumb">
+                        <li><a href="#">Retail</a></li>
+                        <li><a href="#">CASA</a></li>
+                        <li><a href="/">TAT (Basic)</a></li>
+                    </ul>
+                    <div class="header-bar box">
+                        <h4>CASA TAT&nbsp;&nbsp;[24 hrs]</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="toggle-card on">
+                                BASIC
+                            </div>
+                            <div class="toggle-card">
+                                <a href="casatat.html">ADVANCED</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <svg class="chart"></svg>
+                        </div>
+                        <div class="col-md-3 tat-tile-container">
+                            <div class="tat-tile" style="background:#39cccc">
+                                <div class="h4">Min TAT</div>
+                                <div class="h2">8 hrs</div>
+                            </div>
+                            <div class="tat-tile" style="background:#548135">
+                                <div class="h4">Max TAT</div>
+                                <div class="h2">28 hrs</div>
+                            </div>
+                            <div class="tat-tile" style="background:    #0070c0">
+                                <div class="h4">Total Applications Processed</div>
+                                <div class="h2">480</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var margin = {top: 20, right: 30, bottom: 30, left: 70},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom,
+    padding = 0.3;
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], padding);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(function(d) { return dollarFormatter(d); });
+
+var chart = d3.select(".chart")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("data.csv", type, function(error, data) {
+
+  // Transform data (i.e., finding cumulative values and total) for easier charting
+  var cumulative = 0;
+  for (var i = 0; i < data.length; i++) {
+    data[i].start = cumulative;
+    cumulative += data[i].value;
+    data[i].end = cumulative;
+
+    data[i].class = ( data[i].value >= 0 ) ? 'positive' : 'negative'
+  }
+
+  x.domain(data.map(function(d) { return d.name; }));
+  y.domain([0, d3.max(data, function(d) { return d.end; })]);
+
+  chart.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  chart.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+
+  var bar = chart.selectAll(".bar")
+      .data(data)
+    .enter().append("g")
+      .attr("class", function(d) { return "bar " + d.class })
+      .attr("transform", function(d) { return "translate(" + x(d.name) + ",0)"; });
+
+  bar.append("rect")
+      .attr("y", function(d) { return y( Math.max(d.start, d.end) ); })
+      .attr("height", function(d) { return Math.abs( y(d.start) - y(d.end) ); })
+      .attr("width", x.rangeBand());
+
+  bar.append("text")
+      .attr("x", x.rangeBand() / 2)
+      .attr("y", function(d) { return y(d.end) + 5; })
+      .attr("dy", function(d) { return ((d.class=='negative') ? '-.4' : '.75') + "em" })
+      .text(function(d) { return dollarFormatter(Math.abs(d.end - d.start));});
+
+  bar.filter(function(d) { return d.class != "total" }).append("line")
+      .attr("class", "connector")
+      .attr("x1", x.rangeBand() + 5 )
+      .attr("y1", function(d) { return y(d.end) } )
+      .attr("x2", x.rangeBand() / ( 1 - padding) - 5 )
+      .attr("y2", function(d) { return y(d.end) } )
+});
+
+function type(d) {
+  d.value = +d.value;
+  return d;
+}
+
+function dollarFormatter(n) {
+  n = Math.round(n);
+  var result = n;
+  if (Math.abs(n) > 1000) {
+    result = Math.round(n/1000) + 'K';
+  }
+  return  result;
+}
+
+</script>
+
+<script src="js/app.js"></script>
+<!--<script src="js/grid.js"></script>-->
+</body>
+</html>

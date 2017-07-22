@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="Deepak Rapolu" content="" />
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/c3/c3.css" />
+    <link rel="stylesheet" href="bower_components/jqTree/jqtree.css" />
+    <!-- endbower -->
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!--<script src="bower_components/d3/d3.js"></script>-->
+    <script src="bower_components/c3/c3.js"></script>
+    <script src="bower_components/jqTree/tree.jquery.js"></script>
+    <script src="bower_components/matchHeight/dist/jquery.matchHeight.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <!-- endbower -->
+    <!-- inject:css -->
+
+    <link rel="stylesheet" href="css/custom.css"/>
+    <!-- endinject -->
+    <style>
+
+svg {
+  font: 12px sans-serif;
+  fill: white;
+}
+tspan.title {
+  font: 20px sans-serif;
+}
+
+</style></head>
+<body>
+<div class="container-fluid" >
+    <div class="row">
+        <div class="col-md-2 removeCol-md-3-padding" >
+            <a href="/" style="text-decoration:none">
+                <div class="card box" style="text-align:center">
+                <img class="card-img-top logoPadding" src="img/mashreq.png" alt="LOGO"/>
+                <h5 class="header">Operational Analytics</h5>
+            </div>
+            </a>
+            <div class="card box2" class="side-bar">
+                <div class="card-img-top" class="side-bar">
+                    <div id="retailTree" class="treeHeight "></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 paddingForMobile">
+            <div>
+                <div class="card vertical-center box">
+                    <div class="col-md-4 col-md-offset-4 h3">
+                        Retail Analytics Dashboard
+                    </div>
+                    <div class="col-md-4">
+                        <span class="h4 pull-right">Santosh</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card box2">
+                    <ul class="bread-crumb">
+                        <li><a href="#">Retail</a></li>
+                        <li><a href="#">Liability</a></li>
+                        <li><a href="/">TAT</a></li>
+                    </ul>
+                    <div class="header-bar">
+                        <h4>Liability TAT</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="tile" style="background-color:#00b0f0;height:auto">
+                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Mean TAT</div>
+                                <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">28 hrs</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="tile" style="background-color:#39cccc;height:auto">
+                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Total Applications Processed</div>
+                                <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">480</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="tile" style="background-color:#ffc000;height:auto">
+                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Total Team Size</div>
+                                <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">32</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="margin-left:20px">
+                            <svg class="treemap" width="600" height="400"></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var svg = d3.select("svg.treemap"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+var fader = function(color) { return d3.interpolateRgb(color, "#fff")(0.2); },
+    color = d3.scaleOrdinal(d3.schemeCategory20.map(fader)),
+    format = d3.format(",d");
+
+var treemap = d3.treemap()
+    .tile(d3.treemapResquarify)
+    .size([width, height])
+    .round(true)
+    .paddingInner(1);
+
+d3.json("casa.json", function(error, data) {
+  if (error) throw error;
+
+  var root = d3.hierarchy(data)
+      .eachBefore(function(d) { d.data.id = (d.parent ? d.parent.data.id + "." : "") + d.data.name; })
+      .sum(sumBySize)
+      .sort(function(a, b) { return b.height - a.height || b.value - a.value; });
+
+  treemap(root);
+
+  var cell = svg.selectAll("g")
+    .data(root.leaves())
+    .enter().append("g")
+      .attr("transform", function(d) { return "translate(" + d.x0 + "," + d.y0 + ")"; });
+
+  cell.append("rect")
+      .attr("id", function(d) { return d.data.id; })
+      .attr("width", function(d) { return d.x1 - d.x0; })
+      .attr("height", function(d) { return d.y1 - d.y0; })
+      .attr("fill", function(d) { return color(d.data.id); })
+      .attr("onclick", function(d) { return "navigateToEmployeeProductivityPage('" + d.data.id + "')";});
+
+  cell.append("clipPath")
+      .attr("id", function(d) { return "clip-" + d.data.id; })
+    .append("use")
+      .attr("xlink:href", function(d) { return "#" + d.data.id; });
+
+  cell.append("text")
+      .attr("clip-path", function(d) { return "url(#clip-" + d.data.id + ")"; })
+    .selectAll("tspan.title")
+      .data(function(d) { return  [ d.data.name ]; })
+    .enter().append("tspan")
+      .attr("class", "title")
+      .attr("x", 4)
+      .attr("y", function(d, i) { return 20 + i * 10; })
+      .text(function(d) { return d; });
+
+  cell.append("text")
+    .selectAll("tspan.productivity")
+      .data(function(d) { return ["TAT: " + d.data.size + " hrs"]; })
+    .enter().append("tspan")
+      .attr("class","productivity")
+      .attr("x", 4)
+      .attr("y", function(d, i) { return 53 + i * 10; })
+      .text(function(d) { return d; });
+
+  cell.append("text")
+    .selectAll("tspan.teamSize")
+      .data(function(d) { return ["Min TAT: " + d.data.minTAT]; })
+    .enter().append("tspan")
+      .attr("class","teamSize")
+      .attr("x", 4)
+      .attr("y", function(d, i) { return 68 + i * 10; })
+      .text(function(d) { return d; });
+
+  cell.append("text")
+    .selectAll("tspan.target")
+      .data(function(d) { return ["Max TAT: " + d.data.maxTAT]; })
+    .enter().append("tspan")
+      .attr("class","target")
+      .attr("x", 4)
+      .attr("y", function(d, i) { return 83 + i * 10; })
+      .text(function(d) { return d; });
+
+  cell.append("text")
+    .selectAll("tspan.target")
+      .data(function(d) { return ["Applications: " + d.data.applications]; })
+    .enter().append("tspan")
+      .attr("class","processed")
+      .attr("x", 4)
+      .attr("y", function(d, i) { return 101 + i * 10; })
+      .text(function(d) { return d; });
+
+  cell.append("text")
+    .selectAll("tspan.target")
+      .data(function(d) { return ["Team Size: " + d.data.teamSize]; })
+    .enter().append("tspan")
+      .attr("class","processed")
+      .attr("x", 4)
+      .attr("y", function(d, i) { return 119 + i * 10; })
+      .text(function(d) { return d; });
+
+
+  cell.append("title")
+      .text(function(d) { return d.data.id + "\n" + format(d.value); });
+
+  d3.selectAll("input")
+      .data([sumBySize, sumByCount], function(d) { return d ? d.name : this.value; })
+      .on("change", changed);
+
+  var timeout = d3.timeout(function() {
+    d3.select("input[value=\"sumByCount\"]")
+        .property("checked", true)
+        .dispatch("change");
+  }, 2000);
+
+  function changed(sum) {
+    timeout.stop();
+
+    treemap(root.sum(sum));
+
+    cell.transition()
+        .duration(750)
+        .attr("transform", function(d) { return "translate(" + d.x0 + "," + d.y0 + ")"; })
+      .select("rect")
+        .attr("width", function(d) { return d.x1 - d.x0; })
+        .attr("height", function(d) { return d.y1 - d.y0; });
+  }
+});
+
+function sumByCount(d) {
+  return d.children ? 0 : 1;
+}
+
+function sumBySize(d) {
+  return d.size;
+}
+
+function navigateToEmployeeProductivityPage() {
+    window.location.assign("index.html");
+}
+
+</script>
+<script src="js/app.js"></script>
+</body>
+</html>

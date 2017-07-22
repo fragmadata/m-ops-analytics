@@ -1,0 +1,33 @@
+{
+  "name": "Retail",
+  "children": [
+    {
+      "name": "CASA",
+      "size": 90,
+      "teamSize": 8,
+      "target": 200,
+      "processed": 180
+    },
+    {
+      "name": "SME",
+      "size": 80,
+      "teamSize":8,
+      "target":200,
+      "processed":160
+    },
+    {
+      "name": "PL",
+      "size": 72,
+      "teamSize": 8,
+      "target": 200,
+      "processed": 136
+    },
+    {
+      "name": "CC",
+      "size": 74,
+      "teamSize":8,
+      "target":200,
+      "processed":136
+    }
+  ]
+}
