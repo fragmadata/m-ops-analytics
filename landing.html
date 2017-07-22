@@ -29,7 +29,10 @@
     <style>
         line    {stroke:#ddd;shape-rendering: crispEdges;}
         text    {text-anchor:middle;}
-        rect {fill:rgb(255, 127, 14);stroke:steelblue;fill-opacity:0.75;}
+        .kpi rect {fill:rgb(31, 119, 180);stroke:steelblue;fill-opacity:0.75;}
+        .tat rect {fill:rgba(61, 153, 112, 1);stroke:steelblue;fill-opacity:0.75;}
+        .errors rect {fill:rgba(255, 192, 0, 1);stroke:steelblue;fill-opacity:0.75;}
+        .rars rect {fill:#cd765e;stroke:steelblue;fill-opacity:0.75;}
         .axis line {fill:none;stroke:#ddd;shape-rendering: crispEdges;}
         .axis path  {fill:none;}
         .axis text {font-size:0.7em;fill:#555;font-family:sans-serif}
@@ -69,6 +72,9 @@
         .row-margin-nil {
             margin-right:0px !important;
             margin-left:0px !important;
+        }
+        h5 {
+            color: #337ab7;
         }
     </style>
 </head>
@@ -137,7 +143,7 @@
                             </div>
                             <div class="col-md-6 withborder">
                                 <div class="row row-margin-nil">
-                                    <div class="col-md-12" style="background-color:#00b0f0">
+                                    <div class="col-md-12" style="background-color:rgba(61, 153, 112, 1)">
                                         <h4 style="text-align:center;color:#ffffff">Turn Around Time</h4>
                                     </div>
                                 </div>
@@ -169,13 +175,13 @@
                         <div class="row row-margin-nil">
                             <div class="col-md-6 withborder" style="position:relative;left:-2px">
                                 <div class="row row-margin-nil">
-                                    <div class="col-md-12" style="background-color:#00b0f0">
+                                    <div class="col-md-12" style="background-color:#0982ae">
                                         <h4 style="text-align:center;color:#ffffff">Volume and Capacity - Actual vs Baseline</h4>
                                     </div>
                                 </div>
                                 <div class="row breatherbottom row-margin-nil">
                                     <div class="col-md-12">
-                                        <table class="table">
+                                        <table class="table" style="background-color:#f2f4f4">
                                             <tr>
                                                 <td rowspan="2" style="font-weight:bold">
                                                     Volume
@@ -277,7 +283,7 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        <table class="table">
+                                        <table class="table" style="background-color:#f2f4f4">
                                             <tr>
                                                 <td rowspan="2" style="font-weight:bold">
                                                     Capacity
@@ -386,7 +392,7 @@
                                 <div class="row row-margin-nil">
                                     <div class="col-md-12 withborder">
                                         <div class="row row-margin-nil">
-                                            <div class="col-md-12" style="background-color:#00b0f0">
+                                            <div class="col-md-12" style="background-color:rgba(255, 192, 0, 1)">
                                                 <h4 style="text-align:center;color:#ffffff">Errors</h4>
                                             </div>
                                         </div>
@@ -421,7 +427,7 @@
                                 <div class="row borderbottom row-margin-nil">
                                     <div class="col-md-12 withborder">
                                         <div class="row row-margin-nil">
-                                            <div class="col-md-12" style="background-color:#00b0f0">
+                                            <div class="col-md-12" style="background-color:#cd765e">
                                                 <h4 style="text-align:center;color:#ffffff">Refers And Rejects</h4>
                                             </div>
                                             <div class="row row-margin-nil">
@@ -480,70 +486,85 @@
             var curGraphArea = d3.select("#curGraphArea").append("svg")
                                     .attr("width", 120)
                                     .attr("height", maxValue+padding)
+                                    .attr("class", "kpi")
                                     .attr("preserveAspectRatio", "xMidYMin");;
             var productivityGraphArea = d3.select("#productivityGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "kpi")
                                     .attr("height", maxValue+padding);
             var efficiencyGraphArea = d3.select("#efficiencyGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "kpi")
                                     .attr("height", maxValue+padding);
             var avgTatGraphArea = d3.select("#avgTatGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "tat")
                                     .attr("height", maxValue+padding);
             var spanTatGraphArea = d3.select("#spanTatGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "tat")
                                     .attr("height", maxValue+padding);
             var yieldGraphArea = d3.select("#yieldGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "tat")
                                     .attr("height", maxValue+padding);
             var pass1ErrorGraphArea = d3.select("#pass1ErrorGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "errors")
                                     .attr("height", maxValue+padding);
             var pass2ErrorGraphArea = d3.select("#pass2ErrorGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "errors")
                                     .attr("height", maxValue+padding);
             var ccuGraphArea = d3.select("#ccuGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "errors")
                                     .attr("height", maxValue+padding);
             var pass1ReferGraphArea = d3.select("#pass1ReferGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "rars")
                                     .attr("height", maxValue+padding);
             var pass2ReferGraphArea = d3.select("#pass2ReferGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "rars")
                                     .attr("height", maxValue+padding);
             var ccuReferGraphArea = d3.select("#ccuReferGraphArea").append("svg")
                                     .attr("width", 120)
+                                    .attr("class", "rars")
                                     .attr("height", maxValue+padding);
-            renderGraph(curGraphArea);
-            renderGraph(productivityGraphArea);
-            renderGraph(efficiencyGraphArea);
-            renderGraph(avgTatGraphArea);
-            renderGraph(spanTatGraphArea);
-            renderGraph(yieldGraphArea);
-            renderGraph(pass1ErrorGraphArea);
-            renderGraph(pass2ErrorGraphArea);
-            renderGraph(ccuGraphArea);
-            renderGraph(pass1ReferGraphArea);
-            renderGraph(pass2ReferGraphArea);
-            renderGraph(ccuReferGraphArea);
 
-            function renderGraph(svgDoc) {
+            renderGraph(curGraphArea,[10,90,75]);
+            renderGraph(productivityGraphArea,[100,10,46]);
+            renderGraph(efficiencyGraphArea,dataArray1);
+            renderGraph(avgTatGraphArea,dataArray1);
+            renderGraph(spanTatGraphArea,dataArray1);
+            renderGraph(yieldGraphArea,dataArray1);
+            renderGraph(pass1ErrorGraphArea,dataArray1);
+            renderGraph(pass2ErrorGraphArea,dataArray1);
+            renderGraph(ccuGraphArea,dataArray1);
+            renderGraph(pass1ReferGraphArea,dataArray1);
+            renderGraph(pass2ReferGraphArea,dataArray1);
+            renderGraph(ccuReferGraphArea,dataArray1);
 
-            /*var valuesScale = d3.scaleLinear()
+            function renderGraph(svgDoc, dataArray1) {
+
+             maxValue = d3.max(dataArray1, function(d) { return d; });
+
+            var valuesScale = d3.scale.linear()
                      .domain([0, maxValue])
-                     .range([maxValue, 0]); */
+                     .range([0, 60]);
 
             var barWidth = 25;
             var gapBetweenBars = 10;
             var rectangle = svgDoc.selectAll("rect").data(dataArray1).enter().append("rect")
                         .attr("x", function(d,i) {return 10+i*(barWidth+gapBetweenBars);})
-                        .attr("y", function(d,i) { return padding/2+maxValue-d;})
+                        .attr("y", function(d,i) { return padding/2+valuesScale(maxValue)-valuesScale(d);})
                         .attr("width", barWidth)
-                        .attr("height", function(d,i) {return d;});
+                        .attr("height", function(d,i) {return valuesScale(d);});
 
             var textLabels = svgDoc.selectAll("text.axislabel").data(labels).enter().append("text")
                         .attr("x", function(d,i) {return 13+i*(barWidth+gapBetweenBars);})
-                        .attr("y", function(d,i) {return padding/2+maxValue+15;})
+                        .attr("y", function(d,i) {return padding/2+valuesScale(maxValue+15);})
                         .attr("class", "axislabel")
                         .attr("dx", "3em")
                         .text(function(d) { return d; });
@@ -564,7 +585,7 @@
             var rectLabels = svgDoc.selectAll("text.metrics").data(dataArray1).enter().append("text")
                         .attr("class", "metrics")
                         .attr("x", function(d,i) {return 13+i*(barWidth+gapBetweenBars);})
-                        .attr("y", function(d,i) {return padding/2+maxValue-d-5;})
+                        .attr("y", function(d,i) {return padding/2+valuesScale(maxValue-d-5);})
                         .attr("dx", "1em")
                         .text(function(d) { return d; });
 

@@ -17,14 +17,14 @@
     },
     {
       "name": "PL",
-      "size": 72,
+      "size": 60,
       "teamSize": 8,
       "target": 200,
       "processed": 136
     },
     {
       "name": "CC",
-      "size": 74,
+      "size": 40,
       "teamSize":8,
       "target":200,
       "processed":136

@@ -110,7 +110,7 @@ var svg = d3.select("svg.treemap"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-var fader = function(color) { return d3.interpolateRgb(color, "#fff")(0.2); },
+    var fader = function(color) { return d3.interpolateRgb(color, "#fff")(0.2); },
     color = d3.scaleOrdinal(d3.schemeCategory20.map(fader)),
     format = d3.format(",d");
 
