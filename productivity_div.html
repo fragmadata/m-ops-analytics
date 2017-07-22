@@ -96,8 +96,8 @@ tspan.title {
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6" style="margin-left:20px">
-                            <svg class="treemap" width="600" height="400"></svg>
+                        <div class="col-md-12" style="margin-left:20px;text-align:center">
+                            <svg class="treemap" width="800" height="400"></svg>
                         </div>
                     </div>
                 </div>
@@ -139,8 +139,8 @@ d3.json("productivity.json", function(error, data) {
       .attr("id", function(d) { return d.data.id; })
       .attr("width", function(d) { return d.x1 - d.x0; })
       .attr("height", function(d) { return d.y1 - d.y0; })
-      .attr("fill", function(d) { return color(d.data.id); })
-      .attr("onclick", function(d) { return "navigateToEmployeeProductivityPage('" + d.data.id + "')";});
+      .attr("fill", function(d) { return color(d.data.id); });
+      //.attr("onclick", function(d) { return "navigateToEmployeeProductivityPage('" + d.data.id + "')";});
 
   cell.append("clipPath")
       .attr("id", function(d) { return "clip-" + d.data.id; })
@@ -155,7 +155,9 @@ d3.json("productivity.json", function(error, data) {
       .attr("class", "title")
       .attr("x", 4)
       .attr("y", function(d, i) { return 20 + i * 10; })
-      .text(function(d) { return d; });
+      .text(function(d) { return d; })
+      .attr("onclick", function(d) { return "navigateToEmployeeProductivityPage('" + d + "')";})
+      .attr("style", function(d) {return "cursor: pointer;";});
 
   cell.append("text")
     .selectAll("tspan.productivity")
@@ -229,8 +231,13 @@ function sumBySize(d) {
   return d.size;
 }
 
-function navigateToEmployeeProductivityPage() {
-    window.location.assign("index.html");
+function navigateToEmployeeProductivityPage(targetName) {
+    if(targetName == 'CASA') {
+        window.location.assign("index.html");
+    } else {
+        alert("Please click on CASA for now. Other mocks are in progress");
+    }
+
 }
 
 </script>

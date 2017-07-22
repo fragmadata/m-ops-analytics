@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="css/custom.css"/>
     <!-- endinject -->
     <style>
-        line    {stroke:#ddd;shape-rendering: crispEdges;}
+        /*line    {stroke:#ddd;shape-rendering: crispEdges;}
         text    {text-anchor:middle;}
-        rect {fill:rgb(255, 127, 14);stroke:steelblue;fill-opacity:0.75;}
+        rect {fill:#FF5733;stroke:steelblue;fill-opacity:0.75;}
         .axis line {fill:none;stroke:#ddd;shape-rendering: crispEdges;}
         .axis path  {fill:none;}
         .axis text {font-size:0.7em;fill:#555;font-family:sans-serif}
@@ -44,31 +44,20 @@
         svg{
             display: block;
             margin: auto;
-        }
+        }                                                        */
         .withborder {
-            border:solid 1px;
-            /*margin:0.5px;*/
-            padding:0px;
+            /*border:solid 1px;*/
         }
         .withborderright {
-            /*border-right:solid 1px;*/
-            padding:0px;
+            border-right:solid 1px;
         }
         .borderbottom {
-            /*border-bottom:solid 1px;*/
-            margin:2px;
-            padding:0px;
+            border-bottom:solid 1px;
         }
         .breatherbottom {
             /*margin-bottom: 5px*/
-            padding:0px;
         }
         .breatherright1p {
-            padding:0px;
-        }
-        .row {
-            margin-right:0px;
-            margin-left:0px;
         }
     </style>
 </head>
@@ -104,29 +93,29 @@
                         <li><a href="#">Retail</a></li>
                         <li><a href="/">Dashboard</a></li>
                     </ul>
-                        <div class="row borderbottom">
-                            <div class="col-md-6 withborder" style="position:relative;left:-2px">
+                        <div class="row borderbottom" style="border-top: solid 1px">
+                            <div class="col-md-6 withborderright" style="background-color:rgba(0, 176, 240, 0.41)">
                                 <div class="row">
-                                    <div class="col-md-12" style="background-color:#00b0f0">
-                                        <h4 style="text-align:center;color:white">Key Performance Indicators</h4>
+                                    <div class="col-md-12">
+                                        <h4 style="text-align:center">Key Performance Indicators</h4>
                                     </div>
                                 </div>
                                 <div class="row breatherbottom">
-                                    <div class="col-md-4" style="text-align:center">
+                                    <div class="col-md-4 withborder breatherright1p" style="text-align:center">
                                         <div class="justCard box3 aqua">
                                             <div id="curGraphArea">
                                                 <h5 style="text-align:center">CUR</h5>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4" onclick="navigateToProductivityDetails();" style="cursor: pointer;">
+                                    <div class="col-md-4 withborder breatherright1p" onclick="navigateToProductivityDetails();" style="cursor: pointer;">
                                         <div class="justCard box3 aqua">
                                             <div id="productivityGraphArea">
                                                 <h5 style="text-align:center"><a>Productivity</a></h5>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 withborder">
                                         <div class="justCard box3 aqua">
                                             <div id="efficiencyGraphArea">
                                                 <h5 style="text-align:center">Efficiency</h5>
@@ -135,28 +124,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 withborder">
+                            <div class="col-md-6 withborder" style="background-color:#9df4f4">
                                 <div class="row">
-                                    <div class="col-md-12" style="background-color:#00b0f0">
-                                        <h4 style="text-align:center;color:#ffffff">Turn Around Time</h4>
+                                    <div class="col-md-12">
+                                        <h4 style="text-align:center">Turn Around Time</h4>
                                     </div>
                                 </div>
                                 <div class="row breatherbottom">
-                                    <div class="col-md-4" onclick="navigateToTATDetails();" style="cursor: pointer;">
+                                    <div class="col-md-4 withborder breatherright1p" onclick="navigateToTATDetails();" style="cursor: pointer;">
                                         <div class="justCard box3 aqua">
                                             <div id="avgTatGraphArea">
                                                 <h5 style="text-align:center"><a>Average TAT</a></h5>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 withborder breatherright1p">
                                         <div class="justCard box3 aqua">
                                             <div id="spanTatGraphArea">
                                                 <h5 style="text-align:center">Span TAT</h5>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 withborder">
                                         <div class="justCard box3 aqua">
                                             <div id="yieldGraphArea">
                                                 <h5 style="text-align:center">Yield %</h5>
@@ -167,15 +156,39 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 withborder" style="position:relative;left:-2px">
+                            <div class="col-md-6 withborderright" style="">
                                 <div class="row">
-                                    <div class="col-md-12" style="background-color:#00b0f0">
-                                        <h4 style="text-align:center;color:#ffffff">Volume and Capacity - Actual vs Baseline</h4>
+                                    <div class="col-md-12">
+                                        <h4 style="text-align:center">Volume and Capacity - Actual vs Baseline</h4>
                                     </div>
                                 </div>
                                 <div class="row breatherbottom">
                                     <div class="col-md-12">
-                                        <table class="table">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div id="volumeChart">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div id="weightedVolumeChart">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div id="capacityChart">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div id="billedChart">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<table class="table">
                                             <tr>
                                                 <td rowspan="2" style="font-weight:bold">
                                                     Volume
@@ -378,79 +391,71 @@
                                                     37
                                                 </td>
                                             </tr>
-                                        </table>
+                                        </table>-->
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6" style="padding:0px">
+                            <div class="col-md-6 withborder" style="background-color:#b4e4b4">
                                 <div class="row">
-                                    <div class="col-md-12 withborder">
-                                        <div class="row">
-                                            <div class="col-md-12" style="background-color:#00b0f0">
-                                                <h4 style="text-align:center;color:#ffffff">Errors</h4>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="justCard box3 aqua">
-                                                    <div id="pass1ErrorGraphArea">
-                                                        <h5 style="text-align:center">Pass 1 Error</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="justCard box3 aqua">
-                                                    <div id="pass2ErrorGraphArea">
-                                                        <h5 style="text-align:center">Pass 2 Error</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="justCard box3 aqua">
-                                                    <div id="ccuGraphArea">
-                                                        <h5 style="text-align:center">CCU</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                &nbsp;
-                                            </div>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <h4 style="text-align:center">Errors</h4>
                                     </div>
                                 </div>
                                 <div class="row borderbottom">
-                                    <div class="col-md-12 withborder">
-                                        <div class="row">
-                                            <div class="col-md-12" style="background-color:#00b0f0">
-                                                <h4 style="text-align:center;color:#ffffff">Refers And Rejects</h4>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="justCard box3 aqua">
-                                                        <div id="pass1ReferGraphArea">
-                                                            <h5 style="text-align:center">Pass 1 Refer</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="justCard box3 aqua">
-                                                        <div id="pass2ReferGraphArea">
-                                                            <h5 style="text-align:center">Pass 2 Refer</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="justCard box3 aqua">
-                                                        <div id="ccuReferGraphArea">
-                                                            <h5 style="text-align:center">CCU</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    &nbsp;
-                                                </div>
+                                    <div class="col-md-4 withborder breatherright1p">
+                                        <div class="justCard box3 aqua">
+                                            <div id="pass1ErrorGraphArea">
+                                                <h5 style="text-align:center">Pass 1 Error</h5>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-4 withborder breatherright1p">
+                                        <div class="justCard box3 aqua">
+                                            <div id="pass2ErrorGraphArea">
+                                                <h5 style="text-align:center">Pass 2 Error</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 withborder">
+                                        <div class="justCard box3 aqua">
+                                            <div id="ccuGraphArea">
+                                                <h5 style="text-align:center">CCU</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        &nbsp;
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 style="text-align:center">Refers And Rejects</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 withborder breatherright1p">
+                                        <div class="justCard box3 aqua">
+                                            <div id="pass1ReferGraphArea">
+                                                <h5 style="text-align:center">Pass 1 Refer</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 withborder breatherright1p">
+                                        <div class="justCard box3 aqua">
+                                            <div id="pass2ReferGraphArea">
+                                                <h5 style="text-align:center">Pass 2 Refer</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 withborder">
+                                        <div class="justCard box3 aqua">
+                                            <div id="ccuReferGraphArea">
+                                                <h5 style="text-align:center">CCU</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        &nbsp;
                                     </div>
                                 </div>
                             </div>
@@ -576,6 +581,46 @@ function navigateToProductivityDetails() {
 function navigateToTATDetails() {
     window.location.assign("tat.html");
 }
+
+renderBarChart("#volumeChart");
+renderBarChart("#weightedVolumeChart");
+renderBarChart("#capacityChart");
+renderBarChart("#billedChart");
+function renderBarChart(domId) {
+    var chart = c3.generate({
+            bindto : domId,
+            padding: {
+                top:15,
+                right: 30,
+                left: 15,
+            },
+            data:{
+                columns :[
+                    ["Baseline",22,24,23],
+                    ["Actual",9,5,11],
+                    ["Variance",5,12,15],
+                ],
+                type:'bar'
+            },
+            grid:{
+                y:{
+                    show:false
+                }
+            },
+            axis: {
+            y :{
+                show:false
+            },
+            x:{
+                type:'category',
+                categories : ['May 17', 'Jun 17', 'Feb 17']
+            }
+        },
+    });
+}
+
+
+
 </script>
 <script src="js/app.js"></script>
 <script src="js/grid.js"></script>

@@ -139,8 +139,7 @@ d3.json("casa.json", function(error, data) {
       .attr("id", function(d) { return d.data.id; })
       .attr("width", function(d) { return d.x1 - d.x0; })
       .attr("height", function(d) { return d.y1 - d.y0; })
-      .attr("fill", function(d) { return color(d.data.id); })
-      .attr("onclick", function(d) { return "navigateToEmployeeProductivityPage('" + d.data.id + "')";});
+      .attr("fill", function(d) { return color(d.data.id); });
 
   cell.append("clipPath")
       .attr("id", function(d) { return "clip-" + d.data.id; })
@@ -155,7 +154,9 @@ d3.json("casa.json", function(error, data) {
       .attr("class", "title")
       .attr("x", 4)
       .attr("y", function(d, i) { return 20 + i * 10; })
-      .text(function(d) { return d; });
+      .text(function(d) { return d; })
+      .attr("onclick", function(d) { return "navigateToEmployeeTATPage('" + d + "')";})
+      .attr("style", function(d) {return "cursor: pointer;";});
 
   cell.append("text")
     .selectAll("tspan.productivity")
@@ -238,8 +239,12 @@ function sumBySize(d) {
   return d.size;
 }
 
-function navigateToEmployeeProductivityPage() {
-    window.location.assign("index.html");
+function navigateToEmployeeTATPage(targetName) {
+    if(targetName == 'CASA') {
+        window.location.assign("tatwaterfall.html");
+    } else {
+        alert("Please click on CASA for now. Other mocks are in progress");
+    }
 }
 
 </script>
