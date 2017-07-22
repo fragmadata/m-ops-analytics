@@ -169,7 +169,7 @@ d3.csv("data.csv", type, function(error, data) {
     cumulative += data[i].value;
     data[i].end = cumulative;
 
-    data[i].class = ( data[i].value >= 0 ) ? 'positive' : 'negative'
+data[i].class = ( data[i].name.indexOf('Queue') >= 0 ) ? 'negative' : 'positive'
   }
 
   x.domain(data.map(function(d) { return d.name; }));
@@ -197,8 +197,8 @@ d3.csv("data.csv", type, function(error, data) {
 
   bar.append("text")
       .attr("x", x.rangeBand() / 2)
-      .attr("y", function(d) { return y(d.end) + 5; })
-      .attr("dy", function(d) { return ((d.class=='negative') ? '-.4' : '.75') + "em" })
+      .attr("y", function(d) { return y(d.start - (d.start-d.end)/2); })
+      .attr("dy", function(d) { return ".3em" })
       .text(function(d) { return dollarFormatter(Math.abs(d.end - d.start));});
 
   bar.filter(function(d) { return d.class != "total" }).append("line")
