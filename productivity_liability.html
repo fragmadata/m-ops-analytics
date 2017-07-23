@@ -70,16 +70,16 @@ tspan.title {
                     <ul class="bread-crumb">
                         <li><a href="#">Retail</a></li>
                         <li><a href="#">Liability</a></li>
-                        <li><a href="/">TAT</a></li>
+                        <li><a href="/">Productivity</a></li>
                     </ul>
                     <div class="header-bar">
-                        <h4>Liability TAT</h4>
+                        <h4>Retail Productivity</h4>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="tile" style="background-color:#00b0f0;height:auto">
-                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Mean TAT</div>
-                                <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">28 hrs</div>
+                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Avg Productivity</div>
+                                <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">78%</div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -100,15 +100,6 @@ tspan.title {
                             <svg class="treemap" width="800" height="400"></svg>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12" style="margin-left:20px;text-align:center">
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -119,7 +110,7 @@ var svg = d3.select("svg.treemap"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-var fader = function(color) { return d3.interpolateRgb(color, "#fff")(0.2); },
+    var fader = function(color) { return d3.interpolateRgb(color, "#fff")(0.2); },
     color = d3.scaleOrdinal(d3.schemeCategory20.map(fader)),
     format = d3.format(",d");
 
@@ -129,7 +120,7 @@ var treemap = d3.treemap()
     .round(true)
     .paddingInner(1);
 
-d3.json("casa.json", function(error, data) {
+d3.json("productivity_liability.json", function(error, data) {
   if (error) throw error;
 
   var root = d3.hierarchy(data)
@@ -149,6 +140,7 @@ d3.json("casa.json", function(error, data) {
       .attr("width", function(d) { return d.x1 - d.x0; })
       .attr("height", function(d) { return d.y1 - d.y0; })
       .attr("fill", function(d) { return color(d.data.id); });
+      //.attr("onclick", function(d) { return "navigateToEmployeeProductivityPage('" + d.data.id + "')";});
 
   cell.append("clipPath")
       .attr("id", function(d) { return "clip-" + d.data.id; })
@@ -164,12 +156,12 @@ d3.json("casa.json", function(error, data) {
       .attr("x", 4)
       .attr("y", function(d, i) { return 20 + i * 10; })
       .text(function(d) { return d; })
-      .attr("onclick", function(d) { return "navigateToEmployeeTATPage('" + d + "')";})
+      .attr("onclick", function(d) { return "navigateToEmployeeProductivityPage('" + d + "')";})
       .attr("style", function(d) {return "cursor: pointer;";});
 
   cell.append("text")
     .selectAll("tspan.productivity")
-      .data(function(d) { return ["TAT: " + d.data.size + " hrs"]; })
+      .data(function(d) { return ["Productivity: " + d.data.size + "%"]; })
     .enter().append("tspan")
       .attr("class","productivity")
       .attr("x", 4)
@@ -178,7 +170,7 @@ d3.json("casa.json", function(error, data) {
 
   cell.append("text")
     .selectAll("tspan.teamSize")
-      .data(function(d) { return ["Min TAT: " + d.data.minTAT]; })
+      .data(function(d) { return ["Team Size: " + d.data.teamSize]; })
     .enter().append("tspan")
       .attr("class","teamSize")
       .attr("x", 4)
@@ -187,7 +179,7 @@ d3.json("casa.json", function(error, data) {
 
   cell.append("text")
     .selectAll("tspan.target")
-      .data(function(d) { return ["Max TAT: " + d.data.maxTAT]; })
+      .data(function(d) { return ["Target: " + d.data.target]; })
     .enter().append("tspan")
       .attr("class","target")
       .attr("x", 4)
@@ -196,20 +188,11 @@ d3.json("casa.json", function(error, data) {
 
   cell.append("text")
     .selectAll("tspan.target")
-      .data(function(d) { return ["Applications: " + d.data.applications]; })
+      .data(function(d) { return ["Processed: " + d.data.processed]; })
     .enter().append("tspan")
       .attr("class","processed")
       .attr("x", 4)
       .attr("y", function(d, i) { return 101 + i * 10; })
-      .text(function(d) { return d; });
-
-  cell.append("text")
-    .selectAll("tspan.target")
-      .data(function(d) { return ["Team Size: " + d.data.teamSize]; })
-    .enter().append("tspan")
-      .attr("class","processed")
-      .attr("x", 4)
-      .attr("y", function(d, i) { return 119 + i * 10; })
       .text(function(d) { return d; });
 
 
@@ -248,12 +231,13 @@ function sumBySize(d) {
   return d.size;
 }
 
-function navigateToEmployeeTATPage(targetName) {
+function navigateToEmployeeProductivityPage(targetName) {
     if(targetName == 'CASA') {
-        window.location.assign("tatwaterfall.html");
+        window.location.assign("productivity_casa.html");
     } else {
-        alert("Please click on CASA for now. Other mocks are in progress");
+        alert("Please click on Liability for now. Other mocks are in progress");
     }
+
 }
 
 </script>

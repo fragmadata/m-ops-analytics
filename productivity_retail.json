@@ -1,0 +1,26 @@
+{
+  "name": "Retail",
+  "children": [
+    {
+      "name": "Liability",
+      "size": 240,
+      "teamSize": 8,
+      "target": 200,
+      "processed": 180
+    },
+    {
+      "name": "Loans",
+      "size": 80,
+      "teamSize":8,
+      "target":200,
+      "processed":160
+    },
+    {
+      "name": "Cards",
+      "size": 60,
+      "teamSize": 8,
+      "target": 200,
+      "processed": 136
+    }
+  ]
+}

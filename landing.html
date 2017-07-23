@@ -108,7 +108,7 @@
                 <div class="card box2">
                     <ul class="bread-crumb">
                         <li><a href="#">Retail</a></li>
-                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/"></a></li>
                     </ul>
                         <div class="row borderbottom row-margin-nil">
                             <div class="col-md-6 withborder" style="position:relative;left:-2px">
@@ -535,15 +535,15 @@
 
             renderGraph(curGraphArea,[10,90,75]);
             renderGraph(productivityGraphArea,[100,10,46]);
-            renderGraph(efficiencyGraphArea,dataArray1);
-            renderGraph(avgTatGraphArea,dataArray1);
-            renderGraph(spanTatGraphArea,dataArray1);
+            renderGraph(efficiencyGraphArea,[75,65,92]);
+            renderGraph(avgTatGraphArea,[36,24,18]);
+            renderGraph(spanTatGraphArea,[35,32,30]);
             renderGraph(yieldGraphArea,dataArray1);
-            renderGraph(pass1ErrorGraphArea,dataArray1);
-            renderGraph(pass2ErrorGraphArea,dataArray1);
-            renderGraph(ccuGraphArea,dataArray1);
-            renderGraph(pass1ReferGraphArea,dataArray1);
-            renderGraph(pass2ReferGraphArea,dataArray1);
+            renderGraph(pass1ErrorGraphArea,[35,24,18]);
+            renderGraph(pass2ErrorGraphArea,[12,35,16]);
+            renderGraph(ccuGraphArea,[40,42,30]);
+            renderGraph(pass1ReferGraphArea,[10,36,13]);
+            renderGraph(pass2ReferGraphArea,[18,19,16]);
             renderGraph(ccuReferGraphArea,dataArray1);
 
             function renderGraph(svgDoc, dataArray1) {
@@ -564,7 +564,7 @@
 
             var textLabels = svgDoc.selectAll("text.axislabel").data(labels).enter().append("text")
                         .attr("x", function(d,i) {return 13+i*(barWidth+gapBetweenBars);})
-                        .attr("y", function(d,i) {return padding/2+valuesScale(maxValue+15);})
+                        .attr("y", function(d,i) {return padding/2+valuesScale(maxValue)+15;})
                         .attr("class", "axislabel")
                         .attr("dx", "3em")
                         .text(function(d) { return d; });
@@ -592,7 +592,7 @@
         }
 
 function navigateToProductivityDetails() {
-    window.location.assign("productivity_div.html");
+    window.location.assign("productivity_retail.html");
 }
 function navigateToTATDetails() {
     window.location.assign("tat.html");

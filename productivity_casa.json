@@ -1,0 +1,33 @@
+{
+  "name": "CASA",
+  "children": [
+    {
+      "name": "Indexer",
+      "size": 100,
+      "teamSize": 8,
+      "target": 200,
+      "processed": 180
+    },
+    {
+      "name": "Maker",
+      "size": 55,
+      "teamSize":8,
+      "target":200,
+      "processed":160
+    },
+    {
+      "name": "Checker",
+      "size": 90,
+      "teamSize": 8,
+      "target": 200,
+      "processed": 136
+    },
+    {
+      "name": "Dispatch",
+      "size": 98,
+      "teamSize":8,
+      "target":200,
+      "processed":136
+    }
+  ]
+}
