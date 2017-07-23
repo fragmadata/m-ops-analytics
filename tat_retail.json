@@ -3,23 +3,55 @@
   "children": [
     {
       "name": "Liability Ops",
-      "size": 24,
+      "size": 36,
       "minTAT": 8,
       "maxTAT": 28,
       "applications": 160,
       "teamSize": 8
     },
     {
-      "name": "Loans",
-      "size": 18,
-      "minTAT": 22,
-      "maxTAT": 50,
+      "name": "AML Ops",
+      "size": 10,
+      "minTAT": 8,
+      "maxTAT": 28,
       "applications": 160,
       "teamSize": 8
     },
     {
-      "name": "Cards",
-      "size": 30,
+      "name": "Others",
+      "size": 8,
+      "minTAT": 8,
+      "maxTAT": 28,
+      "applications": 160,
+      "teamSize": 8
+    },
+    {
+      "name": "Lending Ops",
+      "size": 50,
+      "minTAT": 8,
+      "maxTAT": 28,
+      "applications": 160,
+      "teamSize": 8
+    },
+    {
+      "name": "Insurance Ops",
+      "size": 80,
+      "minTAT": 8,
+      "maxTAT": 28,
+      "applications": 160,
+      "teamSize": 8
+    },
+    {
+      "name": "Card Ops",
+      "size": 45,
+      "minTAT": 8,
+      "maxTAT": 28,
+      "applications": 160,
+      "teamSize": 8
+    },
+    {
+      "name": "Credit Ops",
+      "size": 46,
       "minTAT": 22,
       "maxTAT": 50,
       "applications": 160,

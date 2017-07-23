@@ -9,15 +9,43 @@
       "processed": 180
     },
     {
-      "name": "Loans",
+      "name": "Lending Ops",
       "size": 80,
       "teamSize":8,
       "target":200,
       "processed":160
     },
     {
-      "name": "Cards",
+      "name": "Card Ops",
       "size": 60,
+      "teamSize": 8,
+      "target": 200,
+      "processed": 136
+    },
+    {
+      "name": "AML Ops",
+      "size": 20,
+      "teamSize": 8,
+      "target": 200,
+      "processed": 136
+    },
+    {
+      "name": "Others",
+      "size": 20,
+      "teamSize": 8,
+      "target": 200,
+      "processed": 136
+    },
+    {
+      "name": "Insurance Ops",
+      "size": 80,
+      "teamSize": 8,
+      "target": 200,
+      "processed": 136
+    },
+    {
+      "name": "Credit Ops",
+      "size": 46,
       "teamSize": 8,
       "target": 200,
       "processed": 136
