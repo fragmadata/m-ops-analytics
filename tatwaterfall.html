@@ -194,7 +194,8 @@ data[i].class = ( data[i].name.indexOf('Queue') >= 0 ) ? 'negative' : 'positive'
   bar.append("rect")
       .attr("y", function(d) { return y( Math.max(d.start, d.end) ); })
       .attr("height", function(d) { return Math.abs( y(d.start) - y(d.end) ); })
-      .attr("width", x.rangeBand());
+      .attr("width", x.rangeBand())
+      .attr("onclick",function(d) { return "showIndexerTeamTat('" + d.name + "')";});
 
   bar.append("text")
       .attr("x", x.rangeBand() / 2)
@@ -222,6 +223,14 @@ function dollarFormatter(n) {
     result = Math.round(n/1000) + 'K';
   }
   return  result;
+}
+
+function showIndexerTeamTat(d) {
+    if(d == 'Indexing') {
+        window.location.assign("indexer_team_tat.html");
+    } else {
+        alert("Please click on Indexing for now. Other mocks are in progress");
+    }
 }
 
 </script>

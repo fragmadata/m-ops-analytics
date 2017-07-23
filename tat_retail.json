@@ -1,0 +1,29 @@
+{
+  "name": "Retail",
+  "children": [
+    {
+      "name": "Liability Ops",
+      "size": 24,
+      "minTAT": 8,
+      "maxTAT": 28,
+      "applications": 160,
+      "teamSize": 8
+    },
+    {
+      "name": "Loans",
+      "size": 18,
+      "minTAT": 22,
+      "maxTAT": 50,
+      "applications": 160,
+      "teamSize": 8
+    },
+    {
+      "name": "Cards",
+      "size": 30,
+      "minTAT": 22,
+      "maxTAT": 50,
+      "applications": 160,
+      "teamSize": 8
+    }
+  ]
+}
