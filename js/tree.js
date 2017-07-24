@@ -13,7 +13,7 @@ class Tree {
       openedIcon: $('<i class="glyphicon glyphicon-minus"></i>'),
       autoOpen: 0
     });
-    $.get("/hierarchy.json", {},function (data) {
+    $.get("hierarchy.json", {},function (data) {
       data.forEach(function (item) {
         if (item.parentId) {
           var parent_node = self.$tree.tree('getNodeById', item.parentId);
