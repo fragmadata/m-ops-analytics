@@ -45,9 +45,9 @@
     }
     
     var cur_graph = createChart("curGraphArea",['data',0.98,0.85,1.15],"%", "rgb(31, 119, 180)");
-    var pass1ErrorGraphArea = createChart("pass1ErrorGraphArea",['data',59,58,63],"","rgba(255, 192, 0, 1)");
-    var  QCErrorGraphArea = createChart("QCErrorGraphArea",['data',0.03,.05,.04],"%","rgba(255, 192, 0, 1)");
-    var ccuGraphArea = createChart("ccuGraphArea",['data',18,12,7],"","rgba(255, 192, 0, 1)");
+    var pass1ErrorGraphArea = createChart("pass1ErrorGraphArea",['data',59,58,63],"","rgb(225, 126,0)");
+    var  QCErrorGraphArea = createChart("QCErrorGraphArea",['data',0.03,.05,.04],"%","rgb(225, 126,0)");
+    var ccuGraphArea = createChart("ccuGraphArea",['data',18,12,7],"","rgb(225, 126,0)");
     var pass1ReferGraphArea = createChart("pass1ReferGraphArea",['data',.06,.11,.12],"%","#cd765e");
     var pass2ReferGraphArea = createChart("pass2ReferGraphArea",['data',.06,.09,.10],"%","#cd765e");
     var ccuReferGraphArea = createChart("ccuReferGraphArea",['data',.12,.20,.22],"%","#cd765e");

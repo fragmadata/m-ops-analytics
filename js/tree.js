@@ -43,6 +43,12 @@ class Tree {
          $('#retailTree').tree('openNode', node);
           node = $('#retailTree').tree('getNodeById', 'DIV_1');
          $('#retailTree').tree('openNode', node);
+    
+          if(typeof current_page_id != 'undefined')
+            {
+                node = $('#retailTree').tree('getNodeById',current_page_id);
+                $('#retailTree').tree('openNode', node);
+            }
       });
         self.$tree.on(
             'tree.click',
@@ -53,6 +59,8 @@ class Tree {
                     window.location.assign("landing2.html");
                 }else if(selectedNode.id == "Unit_16"){
                     window.location.assign("landing3.html");
+                }else if(selectedNode.id === "Activity_16_1"){
+                    window.location.assign("landing4.html");
                 }
             }
         )

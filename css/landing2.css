@@ -22,9 +22,10 @@ svg{
     margin: auto;
 }
 .withborder {
-    border:solid 2px;
+    border:solid 1px;
     margin-bottom:1px;
     padding:0px;
+    border-color:black;
 }
 a{
     color:inherit;
@@ -50,7 +51,7 @@ a{
     margin-left:0px !important;
 }
 h5 {
-    color: inherit;
+    color: #337ab7;
 }
 .c3-target-data{
     text-align: center;
