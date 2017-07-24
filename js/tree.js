@@ -11,13 +11,14 @@ class Tree {
       data: {},
       closedIcon: $('<i class="glyphicon glyphicon-plus"></i>'),
       openedIcon: $('<i class="glyphicon glyphicon-minus"></i>'),
-      autoOpen: 0
+      autoOpen: 0,
     });
+    var open = true;     
     $.get("hierarchy.json", {},function (data) {
+        
       data.forEach(function (item) {
         if (item.parentId) {
           var parent_node = self.$tree.tree('getNodeById', item.parentId);
-
           self.$tree.tree(
             'appendNode', {
               name: item.name,
@@ -34,10 +35,15 @@ class Tree {
               ownerName: item.ownerName
             }
           );
-          var parentNode = self.$tree.tree('getNodeById', item.id);
-          self.$tree.tree('addToSelection', parentNode);
+         var parentNode = self.$tree.tree('getNodeById', item.id);
+         self.$tree.tree('addToSelection', parentNode);
+        
         }
-      })
+          var node = $('#retailTree').tree('getNodeById', 'root');
+         $('#retailTree').tree('openNode', node);
+          node = $('#retailTree').tree('getNodeById', 'DIV_1');
+         $('#retailTree').tree('openNode', node);
+      });
         self.$tree.on(
             'tree.click',
             function(e){

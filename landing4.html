@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="Deepak Rapolu" content="" />
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/c3/c3.css" />
+    <link rel="stylesheet" href="bower_components/jqTree/jqtree.css" />
+    <!-- endbower -->
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/c3/c3.js"></script>
+    <script src="bower_components/jqTree/tree.jquery.js"></script>
+    <script src="bower_components/matchHeight/dist/jquery.matchHeight.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <!-- endbower -->
+    <!-- inject:css -->
+
+    <link rel="stylesheet" href="css/custom.css"/>
+    <!-- endinject -->
+    <style>
+        line    {stroke:#ddd;shape-rendering: crispEdges;}
+        text    {text-anchor:middle;}
+        .kpi rect {fill:rgb(31, 119, 180);stroke:steelblue;fill-opacity:0.75;}
+        .tat rect {fill:rgba(61, 153, 112, 1);stroke:steelblue;fill-opacity:0.75;}
+        .errors rect {fill:rgba(255, 192, 0, 1);stroke:steelblue;fill-opacity:0.75;}
+        .rars rect {fill:#cd765e;stroke:steelblue;fill-opacity:0.75;}
+        .axis line {fill:none;stroke:#ddd;shape-rendering: crispEdges;}
+        .axis path  {fill:none;}
+        .axis text {font-size:0.7em;fill:#555;font-family:sans-serif}
+        text {
+/*            font: 17px sans-serif;*/
+            text-anchor: end;
+        }
+        .axislabel {
+            font: 10px sans-serif;
+            text-anchor:end;
+        }
+        svg{
+            display: block;
+            margin: auto;
+        }
+        .withborder {
+            border:solid 2px;
+/*            margin:0.5px;*/
+            padding:0px;
+        }
+        a{
+            color:inherit;
+        }
+        .withborderright {
+            /*border-right:solid 1px;*/
+            padding:0px;
+        }
+        .borderbottom {
+            /*border-bottom:solid 1px;*/
+            margin:2px;
+            padding:0px;
+        }
+        .breatherbottom {
+            /*margin-bottom: 5px*/
+            padding:0px;
+        }
+        .breatherright1p {
+            padding:0px;
+        }
+        .row-margin-nil {
+            margin-right:0px !important;
+            margin-left:0px !important;
+        }
+        h5 {
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid" >
+
+    <div class="row">
+        <div class="col-md-2 removeCol-md-3-padding" >
+            <div class="card box" style="text-align:center">
+                <img class="card-img-top logoPadding" src="img/mashreq.png" alt="LOGO"/>
+                <h5 class="header">Operational Analytics</h5>
+            </div>
+            <div class="card box2" class="side-bar">
+                <div class="card-img-top" class="side-bar">
+                    <div id="retailTree" class="treeHeight "></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 paddingForMobile">
+            <div>
+                <div class="card vertical-center box">
+                    <div class="col-md-4 col-md-offset-4 h3">
+                        Ops Analytics Dashboard
+                    </div>
+                    <div class="col-md-4">
+                        <span class="h4 pull-right">Santosh</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card box2">
+                    <ul class="bread-crumb">
+                        <li><a href="#">Retail</a></li>
+                        <li><a href="/"></a></li>
+                    </ul>
+                        <div class="row borderbottom row-margin-nil">
+                            <div class="col-md-6 withborder" style="border-color:#00b0f0;color:#00b0f0;position:relative;left:-2px">
+                                <div class="row row-margin-nil">
+                                    <div class="col-md-12" style="background-color:#00b0f0">
+                                        <h4 style="text-align:center;color:white">Key Performance Indicators</h4>
+                                    </div>
+                                </div>
+                                <div class="row breatherbottom row-margin-nil">
+                                    <div class="col-md-4" style="text-align:center">
+                                        <div class="justCard box3 aqua">
+                                            <h5 style="text-align:center">CUR</h5>
+                                            <div id="curGraphArea">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" onclick="navigateToProductivityDetails();" style="cursor: pointer;">
+                                        <div class="justCard box3 aqua">
+                                            <h5 style="text-align:center"><a>Productivity</a></h5>
+                                            <div id="productivityGraphArea">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="justCard box3 aqua">
+                                            <h5 style="text-align:center">Efficiency</h5>
+                                            <div id="efficiencyGraphArea">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 withborder" style="border-color:rgba(61, 153, 112, 1);color:rgba(61, 153, 112, 1)">
+                                <div class="row row-margin-nil">
+                                    <div class="col-md-12" style="background-color:rgba(61, 153, 112, 1)">
+                                        <h4 style="text-align:center;color:#ffffff">Turn Around Time</h4>
+                                    </div>
+                                </div>
+                                <div class="row breatherbottom row-margin-nil">
+                                    <div class="col-md-4" onclick="navigateToTATDetails();" style="cursor: pointer;">
+                                        <div class="justCard box3 aqua">
+                                            <div id="avgTatGraphArea">
+                                                <h5 style="text-align:center"><a>Average TAT</a></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="justCard box3 aqua">
+                                            <div id="spanTatGraphArea">
+                                                <h5 style="text-align:center">Span TAT</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="justCard box3 aqua">
+                                            <div id="yieldGraphArea">
+                                                <h5 style="text-align:center">Yield %</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-margin-nil box2">
+                            <div class="col-md-6 withborder box4" style="border-color:#0982ae;position:relative;left:-2px">
+                                <div class="row row-margin-nil">
+                                    <div class="col-md-12" style="background-color:#0982ae">
+                                        <h4 style="text-align:center;color:#ffffff">Volume and Capacity - Actual vs Baseline</h4>
+                                    </div>
+                                </div>
+                                <div class="row breatherbottom row-margin-nil" style="padding-top:7px;">
+                                    <div class="col-md-12">
+                                        <table class="table" style="background-color:#f2f4f4">
+                                            <tr style="background-color:#03B4C3;color:white;">
+                                                <td rowspan="2" style="font-weight:bold">
+                                                    Volume
+                                                </td>
+                                                <td colspan="3" style="font-weight:bold">
+                                                    Transactional Volume
+                                                </td>
+                                                <td colspan="3" style="font-weight:bold">
+                                                    Weighted Volume
+                                                </td>
+                                            </tr>
+                                            <tr style="background-color:#03B4C3;color:white;">
+                                                <td>
+                                                    May 17
+                                                </td>
+                                                <td>
+                                                    Jun 17
+                                                </td>
+                                                <td>
+                                                    Jul 17
+                                                </td>
+                                                <td>
+                                                    May 17
+                                                </td>
+                                                <td>
+                                                    Jun 17
+                                                </td>
+                                                <td>
+                                                    Jul 17
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Baseline
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Actual
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Variance
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table class="table" style="background-color:#f2f4f4">
+                                            <tr style="background-color:#03B4C3;color:white;">
+                                                <td rowspan="2" style="font-weight:bold">
+                                                    Capacity
+                                                </td>
+                                                <td colspan="3" style="font-weight:bold">
+                                                    Transactional Volume
+                                                </td>
+                                                <td colspan="3" style="font-weight:bold">
+                                                    Weighted Volume
+                                                </td>
+                                            </tr>
+                                            <tr style="background-color:#03B4C3;color:white;">
+                                                <td>
+                                                    May 17
+                                                </td>
+                                                <td>
+                                                    Jun 17
+                                                </td>
+                                                <td>
+                                                    Jul 17
+                                                </td>
+                                                <td>
+                                                    May 17
+                                                </td>
+                                                <td>
+                                                    Jun 17
+                                                </td>
+                                                <td>
+                                                    Jul 17
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Base
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Required
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Build
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                                <td>
+                                                    30
+                                                </td>
+                                                <td>
+                                                    45
+                                                </td>
+                                                <td>
+                                                    37
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 box4" style="padding:0px">
+                                <div class="row row-margin-nil" style="color:rgba(255, 192, 0, 1)">
+                                    <div class="col-md-12 withborder" style="border-color:rgba(255, 192, 0, 1)">
+                                        <div class="row row-margin-nil">
+                                            <div class="col-md-12" style="background-color:rgba(255, 192, 0, 1)">
+                                                <h4 style="text-align:center;color:#ffffff">Errors</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row row-margin-nil">
+                                            <div class="col-md-4">
+                                                <div class="justCard box3 aqua" >
+                                                    <div id="pass1ErrorGraphArea">
+                                                        <h5 style="text-align:center">Pass 1 Error</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="justCard box3 aqua">
+                                                    <div id="pass2ErrorGraphArea">
+                                                        <h5 style="text-align:center">Pass 2 Error</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="justCard box3 aqua">
+                                                    <div id="ccuGraphArea">
+                                                        <h5 style="text-align:center">CCU</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row borderbottom row-margin-nil" style="color:#cd765e">
+                                    <div class="col-md-12 withborder" style="border-color:#cd765e">
+                                        <div class="row row-margin-nil">
+                                            <div class="col-md-12" style="background-color:#cd765e">
+                                                <h4 style="text-align:center;color:#ffffff">Refers And Rejects</h4>
+                                            </div>
+                                            <div class="row row-margin-nil">
+                                                <div class="col-md-4">
+                                                    <div class="justCard box3 aqua">
+                                                        <div id="pass1ReferGraphArea">
+                                                            <h5 style="text-align:center">Pass 1 Refer</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="justCard box3 aqua">
+                                                        <div id="pass2ReferGraphArea">
+                                                            <h5 style="text-align:center">Pass 2 Refer</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="justCard box3 aqua">
+                                                        <div id="ccuReferGraphArea">
+                                                            <h5 style="text-align:center">CCU</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    &nbsp;
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+                //2 different data arrays
+             dataArray1 = [30,45,37];
+             labels = ["May 17", "Jun 17", "Jul 17"];
+             dataArray2 = [50,20,45,35,20,25,34,51,50,30,45,37];
+
+            //globals
+            var dataIndex=1;
+            var xBuffer=50;
+            var yBuffer=150;
+            var lineLength=400;
+
+             maxValue = d3.max(dataArray2, function(d) { return d; });
+             padding = 70;
+
+
+            //create main svg element
+            var curGraphArea = d3.select("#curGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("height", maxValue+padding)
+                                    .attr("class", "kpi")
+                                    .attr("preserveAspectRatio", "xMidYMin");;
+            var productivityGraphArea = d3.select("#productivityGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "kpi")
+                                    .attr("height", maxValue+padding);
+            var efficiencyGraphArea = d3.select("#efficiencyGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "kpi")
+                                    .attr("height", maxValue+padding);
+            var avgTatGraphArea = d3.select("#avgTatGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "tat")
+                                    .attr("height", maxValue+padding);
+            var spanTatGraphArea = d3.select("#spanTatGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "tat")
+                                    .attr("height", maxValue+padding);
+            var yieldGraphArea = d3.select("#yieldGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "tat")
+                                    .attr("height", maxValue+padding);
+            var pass1ErrorGraphArea = d3.select("#pass1ErrorGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "errors")
+                                    .attr("height", maxValue+padding);
+            var pass2ErrorGraphArea = d3.select("#pass2ErrorGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "errors")
+                                    .attr("height", maxValue+padding);
+            var ccuGraphArea = d3.select("#ccuGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "errors")
+                                    .attr("height", maxValue+padding);
+            var pass1ReferGraphArea = d3.select("#pass1ReferGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "rars")
+                                    .attr("height", maxValue+padding);
+            var pass2ReferGraphArea = d3.select("#pass2ReferGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "rars")
+                                    .attr("height", maxValue+padding);
+            var ccuReferGraphArea = d3.select("#ccuReferGraphArea").append("svg")
+                                    .attr("width", 120)
+                                    .attr("class", "rars")
+                                    .attr("height", maxValue+padding);
+
+            renderGraph(curGraphArea,[10,90,75]);
+            renderGraph(productivityGraphArea,[100,10,46]);
+            renderGraph(efficiencyGraphArea,[75,65,92]);
+            renderGraph(avgTatGraphArea,[36,24,18]);
+            renderGraph(spanTatGraphArea,[35,32,30]);
+            renderGraph(yieldGraphArea,dataArray1);
+            renderGraph(pass1ErrorGraphArea,[35,24,18]);
+            renderGraph(pass2ErrorGraphArea,[12,35,16]);
+            renderGraph(ccuGraphArea,[40,42,30]);
+            renderGraph(pass1ReferGraphArea,[10,36,13]);
+            renderGraph(pass2ReferGraphArea,[18,19,16]);
+            renderGraph(ccuReferGraphArea,dataArray1);
+
+            function renderGraph(svgDoc, dataArray1) {
+
+             maxValue = d3.max(dataArray1, function(d) { return d; });
+
+            var valuesScale = d3.scale.linear()
+                     .domain([0, maxValue])
+                     .range([0, 60]);
+
+            var barWidth = 25;
+            var gapBetweenBars = 10;
+            var rectangle = svgDoc.selectAll("rect").data(dataArray1).enter().append("rect")
+                        .attr("x", function(d,i) {return 10+i*(barWidth+gapBetweenBars);})
+                        .attr("y", function(d,i) { return padding/2+valuesScale(maxValue)-valuesScale(d);})
+                        .attr("width", barWidth)
+                        .attr("height", function(d,i) {return valuesScale(d);});
+
+            var textLabels = svgDoc.selectAll("text.axislabel").data(labels).enter().append("text")
+                        .attr("x", function(d,i) {return 13+i*(barWidth+gapBetweenBars);})
+                        .attr("y", function(d,i) {return padding/2+valuesScale(maxValue)+15;})
+                        .attr("class", "axislabel")
+                        .attr("dx", "3em")
+                        .text(function(d) { return d; });
+
+            /*var lineFunction = d3.line()
+                         .x(function(d,i) { console.log(i); return i*200/dataArray2.length; })
+                         .y(function(d) { return padding/2+maxValue-d-5; });
+
+            //var plotPoints = svgDoc.selectAll("circle").
+         svgDoc.append("path")
+          //.data([dataArray1])
+          .attr("class", "line")
+          .attr("d", lineFunction(dataArray2))
+          .attr("stroke", "purple")
+          .attr("stroke-width", "1px")
+          .attr("fill", "none");*/
+
+            var rectLabels = svgDoc.selectAll("text.metrics").data(dataArray1).enter().append("text")
+                        .attr("class", "metrics")
+                        .attr("x", function(d,i) {return 13+i*(barWidth+gapBetweenBars);})
+                        .attr("y", function(d,i) {return padding/2+valuesScale(maxValue-d-5);})
+                        .attr("dx", "1em")
+                        .text(function(d) { return d; });
+
+        }
+
+function navigateToProductivityDetails() {
+    window.location.assign("productivity_retail.html");
+}
+function navigateToTATDetails() {
+    window.location.assign("tat_retail.html");
+}
+</script>
+<script src="js/app.js"></script>
+<script src="js/tree.js"></script>
+<!--<script src="js/grid.js"></script>-->
+</body>
+</html>
