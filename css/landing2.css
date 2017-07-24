@@ -55,6 +55,7 @@ h5 {
 .c3-target-data{
     text-align: center;
 }
+
 text{
     font-size: 13px;
 }
@@ -66,7 +67,8 @@ text{
     background-color: #f2f4f4;
     padding:5px;
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    color:black;
 }
 .insightDiv h4{
     margin-left:2px;
@@ -80,4 +82,10 @@ text{
 }
 path.domain{
     visibility: hidden;
+}
+.c3-bars{
+    opacity:0.7;
+}
+.c3-texts{
+    fill:rgb(0,0,0) !important;
 }

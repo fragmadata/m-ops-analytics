@@ -3,7 +3,7 @@ $(document).ready(function() {
     $(".box2").matchHeight();
     $(".box3").matchHeight();
     $(".box4").matchHeight();
-    var treeData = [{
+    /*var treeData = [{
         name: 'Retail',
         children: [
             { 
@@ -23,5 +23,5 @@ $(document).ready(function() {
     $('#retailTree').tree({
         data: treeData,
         autoOpen:true
-    });
+    });*/
 });

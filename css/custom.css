@@ -11,7 +11,7 @@
 }
 ul.jqtree-tree ul.jqtree_common {
     list-style: none outside;
-    margin-left: 12px;
+    margin-left: 5px;
     margin-right: 0;
     margin-bottom: 0;
     padding: 0;
@@ -469,14 +469,12 @@ path {
 .sidebar{
   overflow-y: show;
 }
-} /*end desktop*/
+}
+/*end desktop*/
 
 
 .side-bar{
     background-color: #ffd965;
-}
-#retailTree{
-    margin-left:20px;
 }
 .header-bar{
     position: relative;
