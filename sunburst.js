@@ -13,10 +13,20 @@ var json = {
                         children : [
                             {
                                 name: "CASA",
-                                value: 75
+                                value: 75,
                                 children : [
-                                    indexer: "70",
-                                    maker:""
+                                    {
+                                        name:"Indexer",
+                                        value:95
+                                    },
+                                    {
+                                        name:"Maker",
+                                        value:75
+                                    },
+                                    {
+                                        name:"Checker",
+                                        value:85
+                                    }
                                 ]
                             },
                             {
@@ -27,27 +37,27 @@ var json = {
                     },
                     {
                         name:"Insurance Ops",
-                        value: 78,
+                        value: 78
                     },
                     {
                         name:"Credit Ops",
-                        value: 85,
+                        value: 85
                     },
                     {
                         name:"Card Ops",
-                        value: 65,
+                        value: 65
                     },
                     {
                         name:"Lending Ops",
-                        value: 70,
+                        value: 70
                     },
                     {
                         name:"AML Ops",
-                        value: 88,
+                        value: 88
                     },
                     {
                         name:"Others",
-                        value: 53,
+                        value: 53
                     }
                 ]
             }

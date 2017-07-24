@@ -95,6 +95,11 @@ var b = {
 };
 
 // Mapping of step names to colors.
+function colors_google(n) {
+  var colors_g = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
+  return colors_g[n % colors_g.length];
+}
+
 var colors = {
   "home": "#5687d1",
   "product": "#7b615c",
@@ -172,7 +177,7 @@ function createVisualization(json) {
 // Fade all but the current sequence, and show it in the breadcrumb trail.
 function mouseover(d) {
 
-  var percentage = (100 * d.value / totalSize).toPrecision(3);
+  var percentage = d.size;//(100 * d.value / totalSize).toPrecision(3);
   var percentageString = percentage + "%";
   if (percentage < 0.1) {
     percentageString = "< 0.1%";
@@ -388,6 +393,72 @@ function buildHierarchy(csv) {
     }
   }
 
+  
+  root={
+    name:"root",
+    size:75,
+    children:
+        [
+            {
+                name:"Retail",
+                size:67,
+                children : [
+                    {
+                        name:"Liability Ops",
+                        size: 88,
+                        children : [
+                            {
+                                name: "CASA",
+                                size: 75,
+                                children : [
+                                    {
+                                        name:"Indexer",
+                                        size:95
+                                    },
+                                    {
+                                        name:"Maker",
+                                        size:75
+                                    },
+                                    {
+                                        name:"Checker",
+                                        size:10
+                                    }
+                                ]
+                            },
+                            {
+                                name: "SME",
+                                size: 88
+                            }
+                        ]
+                    },
+                    {
+                        name:"Insurance Ops",
+                        size: 78
+                    },
+                    {
+                        name:"Credit Ops",
+                        size: 85
+                    },
+                    {
+                        name:"Card Ops",
+                        size: 65
+                    },
+                    {
+                        name:"Lending Ops",
+                        size: 70
+                    },
+                    {
+                        name:"AML Ops",
+                        size: 88
+                    },
+                    {
+                        name:"Others",
+                        size: 53
+                    }
+                ]
+            }
+        ]
+};
   console.log(root);
   return root;
 };
