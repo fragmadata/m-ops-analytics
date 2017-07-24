@@ -1,6 +1,8 @@
 $(document).ready(function() {
-    $('.box').matchHeight();
-    $('.box2').matchHeight();
+    $(".box").matchHeight();
+    $(".box2").matchHeight();
+    $(".box3").matchHeight();
+    $(".box4").matchHeight();
     var treeData = [{
         name: 'Retail',
         children: [

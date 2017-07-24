@@ -1,0 +1,83 @@
+line {
+    stroke:#ddd;shape-rendering: crispEdges;
+}
+text    {text-anchor:middle;}
+.kpi rect {fill:rgb(31, 119, 180);stroke:steelblue;fill-opacity:0.75;}
+.tat rect {fill:rgba(61, 153, 112, 1);stroke:steelblue;fill-opacity:0.75;}
+.errors rect {fill:rgba(255, 192, 0, 1);stroke:steelblue;fill-opacity:0.75;}
+.rars rect {fill:#cd765e;stroke:steelblue;fill-opacity:0.75;}
+.axis line {fill:none;stroke:#ddd;shape-rendering: crispEdges;}
+.axis path  {fill:none;}
+.axis text {font-size:0.7em;fill:#555;font-family:sans-serif}
+text {
+/*            font: 17px sans-serif;*/
+    text-anchor: middle;
+}
+.axislabel {
+    font: 10px sans-serif;
+    text-anchor:end;
+}
+svg{
+    display: block;
+    margin: auto;
+}
+.withborder {
+    border:solid 2px;
+    margin-bottom:1px;
+    padding:0px;
+}
+a{
+    color:inherit;
+}
+.withborderright {
+    /*border-right:solid 1px;*/
+    padding:0px;
+}
+.borderbottom {
+    /*border-bottom:solid 1px;*/
+    margin:2px;
+    padding:0px;
+}
+.breatherbottom {
+    /*margin-bottom: 5px*/
+    padding:0px;
+}
+.breatherright1p {
+    padding:0px;
+}
+.row-margin-nil {
+    margin-right:0px !important;
+    margin-left:0px !important;
+}
+h5 {
+    color: inherit;
+}
+.c3-target-data{
+    text-align: center;
+}
+text{
+    font-size: 13px;
+}
+.c3-target-data .c3-text{
+    font-size:17px;
+}
+.insightDiv{
+    display: block;
+    background-color: #f2f4f4;
+    padding:5px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.insightDiv h4{
+    margin-left:2px;
+    font: san-serif;
+}
+.box4{
+    padding:0;
+}
+.tick line{
+    visibility: hidden;
+}
+path.domain{
+    visibility: hidden;
+}
