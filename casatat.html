@@ -111,19 +111,21 @@ $(document).ready(function(){
             },    
             data:{
                 columns :[
-                    ["TAT",22,24,23,28,27,26],
-                    ["Waiting",9,5,11,14,5,10],
-                    ["Checker",5,12,15,19,20,25],
-                    ["Maker",15,20,10,18,10,14],
-                    ["Indexing",12,18,19,20,27,21]
+                    ["Jan 17",22,9,5,15,12  ],
+                    ["Feb 17",24,5,12,20,18 ],
+                    ["Mar 17",23,11,15,10,19],
+                    ["Apr 17",28,14,19,18,20],
+                    ["May 17",27,5,20,10,27 ],
+                    ["Jun 17",26,10,25,14,21]
                 ],
                 type:'bar',
                 colors: {
-                'TAT': '#00b0f0',
-                'Waiting': 'rgba(61, 153, 112, 1)',
-                'Checker': '#03B4C3',
-                'Maker': "rgb(225, 126,0)",
-                'Indexing': "#0070c0"
+                'Jan 17': '#00b0f0',
+                'Feb 17': 'rgba(61, 153, 112, 1)',
+                'Mar 17': '#03B4C3',
+                'Apr 17': "rgb(225, 126,0)",
+                'May 17': "#0070c0",
+                'Jun 17': 'rgb(188, 189, 34)'
                  }
             },
             grid:{
@@ -141,7 +143,7 @@ $(document).ready(function(){
             },
             x:{
                 type:'category',
-                categories : ['Jan', 'Feb', 'Mar', 'Apr','May','Jun']
+                categories : ['TAT','Waiting','Checker','Maker','Indexing']
             }
         },
     });
