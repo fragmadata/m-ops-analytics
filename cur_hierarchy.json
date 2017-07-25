@@ -4,7 +4,7 @@
   [
     {
       "name":"Retail",
-      "size":50,
+      "size":99,
       "height":4,
       "children" : [
         {
