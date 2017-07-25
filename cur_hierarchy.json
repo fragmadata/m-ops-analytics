@@ -21,30 +21,7 @@
               "size": 75,
               "height": 2,
               "applicationsProcessed": 31,
-              "teamSize": 40,
-              "children" : [
-                {
-                  "name":"Indexer",
-                  "size":95,
-                  "height":1,
-                  "applicationsProcessed": 10,
-                  "teamSize": 10
-                },
-                {
-                  "name":"Maker",
-                  "size":75,
-                  "height":1,
-                  "applicationsProcessed": 11,
-                  "teamSize": 15
-                },
-                {
-                  "name":"Checker",
-                  "size":10,
-                  "height":1,
-                  "applicationsProcessed": 10,
-                  "teamSize": 12
-                }
-              ]
+              "teamSize": 40
             },
             {
               "name": "SME",
