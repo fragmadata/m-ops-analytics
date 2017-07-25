@@ -10,9 +10,9 @@ $(document).ready(function(){
         ];
         var gridData = [
             ["Shiv Shankar",8,15,14,32,33,"103%"],
-            ["Emp2",8,15,14,32,34,"106%"],
-            ["Emp3",8,15,14,32,25,"78%"],
-            ["Emp4",8,15,14,32,26,"81%"]
+            ["Sarathi M",8,15,14,32,34,"106%"],
+            ["Suganya T",8,15,14,32,25,"78%"],
+            ["Sangeetha N",8,15,14,32,26,"81%"]
         ];
         var headerTemplate = $("#tableHeadTemplate").html();
         var bodyTemplate = $("#tableBodyTemplate").html();

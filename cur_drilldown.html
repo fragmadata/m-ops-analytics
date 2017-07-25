@@ -1,57 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>Sequences sunburst</title>
-    <script src="//d3js.org/d3.v3.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
-    <!--<link rel="stylesheet" type="text/css" href="sequences.css"/>-->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="Deepak Rapolu" content="" />
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/c3/c3.css" />
+    <link rel="stylesheet" href="bower_components/jqTree/jqtree.css" />
+    <!-- endbower -->
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/c3/c3.js"></script>
+    <script src="bower_components/jqTree/tree.jquery.js"></script>
+    <script src="bower_components/matchHeight/dist/jquery.matchHeight.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <!-- endbower -->
+    <!-- inject:css -->
+
+    <link rel="stylesheet" href="css/custom.css"/>
+    <!-- endinject -->
     <style>
-body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  background-color: #fff;
-  width: 960px;
-  height: 700px;
-  margin-top: 10px;
-}
 
-#main {
-  float: left;
-  width: 750px;
+text.center {
+  font: 20px sans-serif;
+  fill: black;
+  text-anchor:middle;
 }
-
-#sidebar {
-  float: right;
-  width: 100px;
+tspan.title {
+  font: 20px sans-serif;
 }
-
-#sequence {
-  width: 600px;
-  height: 70px;
-}
-
-#legend {
-  padding: 10px 0 0 3px;
-}
-
-#sequence text, #legend text {
-  font-weight: 600;
-  fill: #fff;
-}
-
-#chart {
-  position: relative;
-}
-
-#chart path {
-  stroke: #fff;
-}
-
 #explanation {
-  position: absolute;
+  position: relative;
   top: 260px;
   left: 305px;
   width: 140px;
@@ -59,34 +46,79 @@ body {
   color: #666;
   z-index: -1;
 }
-
-#percentage {
-  font-size: 2.5em;
-}
-    </style>
-</head>
+</style></head>
 <body>
-<div id="main">
-    <div id="sequence"></div>
-    <div id="chart">
-        <div id="explanation" style="visibility: hidden;">
-            <span id="percentage"></span><br/>
-            of visits begin with this sequence of pages
+<div class="container-fluid" >
+    <div class="row">
+        <div class="col-md-2 removeCol-md-3-padding" >
+            <a href="/" style="text-decoration:none">
+                <div class="card box" style="text-align:center">
+                <img class="card-img-top logoPadding" src="img/mashreq.png" alt="LOGO"/>
+                <h5 class="header">Operational Analytics</h5>
+            </div>
+            </a>
+            <div class="card box2" class="side-bar">
+                <div class="card-img-top" class="side-bar">
+                    <div id="retailTree" class="treeHeight "></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 paddingForMobile">
+            <div>
+                <div class="card vertical-center box">
+                    <div class="col-md-4 col-md-offset-4 h3">
+                        Retail Analytics Dashboard
+                    </div>
+                    <div class="col-md-4">
+                        <span class="h4 pull-right">Santosh</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card box2">
+                    <ul class="bread-crumb">
+                        <li><a href="#">Retail</a></li>
+                        <li><a href="/">Productivity</a></li>
+                    </ul>
+                    <div class="header-bar">
+                        <h4>Retail Productivity</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="tile" style="background-color:#00b0f0;height:auto">
+                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Avg Productivity</div>
+                                <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">78%</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="tile" style="background-color:#39cccc;height:auto">
+                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Total Applications Processed</div>
+                                <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">480</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="tile" style="background-color:#ffc000;height:auto">
+                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Total Team Size</div>
+                                <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">32</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="margin-left:20px;text-align:center">
+                            <div id="sequence"></div>
+                            <div id="chart">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div id="sidebar">
-    <input type="checkbox" id="togglelegend"> Legend<br/>
-    <div id="legend" style="visibility: hidden;"></div>
-</div>
-<script type="text/javascript">
-      // Hack to make this example display correctly in an iframe on bl.ocks.org
-      d3.select(self.frameElement).style("height", "700px");
-  </script>
 <script>
 // Dimensions of sunburst.
 var width = 750;
-var height = 600;
+var height = 500;
 var radius = Math.min(width, height) / 2;
 
 // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
@@ -107,19 +139,6 @@ var b = {
 
 // Mapping of step names to colors.
 function colors_google(n) {
-  //var colors_g = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
-  /*var colors_g = [
-  "#1f77b4",
-  "#ff7f0e",
-  "#2ca02c",
-  "#d62728",
-  "#9467bd",
-  "#fd8d3c",
-  "#e377c2",
-  //"#7f7f7f",
-  //"#bcbd22",
-  "#17becf"
-  ];*/
   var colors_g = [
        "#3182bd",
        "#6baed6",
@@ -176,91 +195,6 @@ var arc = d3.svg.arc()
     .innerRadius(function(d) { return Math.sqrt(d.y); })
     .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
 
-// Use d3.text and d3.csv.parseRows so that we do not need to have a header
-// row, and can receive the csv as an array of arrays.
-//d3.text("visit-sequences.csv", function(text) {
-//  var csv = d3.csv.parseRows(text);
-//  var json = buildHierarchy(csv);
-    var json = {
-    name:"root",
-    children:
-        [
-            {
-                name:"Retail",
-                size:99,
-                height:4,
-                children : [
-                    {
-                        name:"Liability Ops",
-                        size: 81,
-                        height:3,
-                        children : [
-                            {
-                                name: "CASA",
-                                size: 75,
-                                height: 2,
-                                children : [
-                                    {
-                                        name:"Indexer",
-                                        size:95,
-                                        height:1
-                                    },
-                                    {
-                                        name:"Maker",
-                                        size:75,
-                                        height:1
-                                    },
-                                    {
-                                        name:"Checker",
-                                        size:10,
-                                        height:1
-                                    }
-                                ]
-                            },
-                            {
-                                name: "SME",
-                                size: 88,
-                                height: 2
-                            }
-                        ]
-                    },
-                    {
-                        name:"CCPL",
-                        size: 125,
-                        height:3
-                    },
-                    {
-                        name:"Insurance Ops",
-                        size: 103,
-                        height:3
-                    },
-                    {
-                        name:"Card Ops",
-                        size: 109,
-                        height:3
-                    },
-                    {
-                        name:"Lending Ops",
-                        size: 89,
-                        height:3
-                    },
-                    {
-                        name:"AML Ops",
-                        size: 108,
-                        height:3
-                    }
-                ]
-            },
-            {
-                name:"Others",
-                size:1,
-                height:4
-            }
-        ]
-};
-//  createVisualization(json);
-//});
-
 d3.json("cur_hierarchy.json", function(error, json) {
     if(error) {
         console.log("Error while parsing JSON");
@@ -282,6 +216,9 @@ function createVisualization(json) {
   vis.append("svg:circle")
       .attr("r", radius)
       .style("opacity", 0);
+
+  vis.append("svg:text")
+     .attr("class","center");
 
   // For efficiency, filter nodes to keep only those large enough to see.
   var nodes = partition.nodes(json)
@@ -321,6 +258,7 @@ function mouseover(d) {
   d3.select("#explanation")
       .style("visibility", "");
 
+    
   var sequenceArray = getAncestors(d);
   updateBreadcrumbs(sequenceArray, percentageString);
 
@@ -334,14 +272,18 @@ function mouseover(d) {
                 return (sequenceArray.indexOf(node) >= 0);
               })
       .style("opacity", 1);
+
+    vis.select("text")
+     .text(d.name + " : " + d.size + "%")
+     .attr("class","center");
 }
 
 // Restore everything to full opacity when moving off the visualization.
 function mouseleave(d) {
 
   // Hide the breadcrumb trail
-  d3.select("#trail")
-      .style("visibility", "hidden");
+  /*d3.select("#trail")
+      .style("visibility", "hidden");*/
 
   // Deactivate all segments during transition.
   d3.selectAll("path").on("mouseover", null);
@@ -483,5 +425,7 @@ function toggleLegend() {
   }
 }
 </script>
+<script src="js/app.js"></script>
+<script src="js/tree.js"></script>
 </body>
 </html>
