@@ -21,29 +21,33 @@ $(document).ready(function(){
         var chart = c3.generate({
             bindto : "#chart",
             data:{
-                x:'x',
                 columns :[
-                    ['x', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01','2016-05-01'],
-                    ["Shiv Shankar",2,4,3,4,3],
-                    ["Sarathi M",5,7,8,5,5],
-                    ["Suganya T",1,1,3,2,1],
-                    ["Sangeetha N",1,6,3,4,1]
+                    ['Mar 17',2,5,1,1],
+                    ['Apr 17',4,7,1,6],
+                    ['May 17',3,8,3,3],
+                    ['Jun 17',4,5,2,4],
+                    ['Jul 17',3,5,1,1]
                 ],
                 type: 'bar',
                   		colors: {
-                              'Shiv Shankar': '#00b0f0',
-                              'Sarathi M': 'rgba(61, 153, 112, 1)',
-                              'Suganya T': '#03B4C3',
-                  	    'Sangeetha N': "rgb(225, 126,0)"
-                          }
+             'Mar 17': '#00b0f0',
+            'Apr 17': 'rgba(61, 153, 112, 1)',
+            'May 17': '#03B4C3',
+	        'Jun 17': "rgb(225, 126,0)",
+	        'Jul 17':'rgb(188, 189, 34)'
+                              }
             },
             axis: {
-            x: {
-                type: 'timeseries',
-                tick: {
-                    format: '%Y-%m'
-                }
-            }
-        }
-    });
+                        x: {
+                            type: 'category',
+                            categories : ["Shiv Shankar","Sarathi M","Suganya T","Sangeetha N"]
+                        },y :{
+                                                  show:true,
+                                                  label: {
+                                                      text: "Avg TAT (in mins)",
+                                                      position: 'outer-middle'
+                                                   }
+                                              }
+                    }
+        });
 });

@@ -18,32 +18,37 @@ $(document).ready(function(){
         var bodyTemplate = $("#tableBodyTemplate").html();
         $("#tableHeader").html(_.template(headerTemplate)({items:gridHeaders}));
         $("#tableBody").html(_.template(bodyTemplate)({rows:gridData}));
+
         var chart = c3.generate({
             bindto : "#chart",
             data:{
-                x:'x',
                 columns :[
-                    ['x', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01','2016-05-01'],
-                    ["Shiv Shankar",85,100,120,95,103],
-                    ["Sarathi M",100,105,79,85,106],
-                    ["Suganya T",50,100,110,90,78],
-                    ["Sangeetha N",81,100,50,95,85]
+                     ['Mar 17',85,100,50,81]    ,
+                     ['Apr 17',100,105,100,100] ,
+                     ['May 17',120,79,110,50]   ,
+                     ['Jun 17',95,85,90,95]     ,
+                     ['Jul 17',103,106,78,85]
                 ],
 		type: 'bar',
 		colors: {
-            'Shiv Shankar': '#00b0f0',
-            'Sarathi M': 'rgba(61, 153, 112, 1)',
-            'Suganya T': '#03B4C3',
-	    'Sangeetha N': "rgb(225, 126,0)"
+            'Mar 17': '#00b0f0',
+            'Apr 17': 'rgba(61, 153, 112, 1)',
+            'May 17': '#03B4C3',
+	        'Jun 17': "rgb(225, 126,0)",
+	        'Jul 17':'rgb(188, 189, 34)'
         }
             },
             axis: {
             x: {
-                type: 'timeseries',
-                tick: {
-                    format: '%Y-%m'
-                }
-            }
+                type: 'category',
+                categories : ["Shiv Shankar","Sarathi M","Suganya T","Sangeetha N"]
+            },y :{
+                                      show:true,
+                                      label: {
+                                          text: "Productivity",
+                                          position: 'outer-middle'
+                                       }
+                                  }
         }
     });
 });
