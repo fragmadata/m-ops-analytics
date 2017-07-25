@@ -25,3 +25,7 @@ $(document).ready(function() {
         autoOpen:true
     });*/
 });
+
+function navigateToCURDrillDown() {
+    window.location.assign("cur_drilldown.html");
+}
