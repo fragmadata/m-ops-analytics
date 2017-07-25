@@ -17,55 +17,83 @@
           "teamSize": 89,
           "children" : [
             {
-              "name": "CASA",
-              "size": 75,
+              "name": "CASA A/c Opening",
+              "size": 86,
               "height": 2,
-              "applicationsProcessed": 31,
-              "teamSize": 40
+              "applicationsProcessed": "28,706",
+              "teamSize": 31
             },
             {
-              "name": "SME",
-              "size": 88,
+              "name": "SME A/c Opening",
+              "size": 98,
               "height": 2,
-              "applicationsProcessed": 20,
-              "teamSize": 15
+              "applicationsProcessed": "20,504",
+              "teamSize": 22
+            },
+            {
+              "name": "Maintenance",
+              "size": 104,
+              "height": 2,
+              "applicationsProcessed": "8,202",
+              "teamSize": 8
+            },
+            {
+              "name": "KYC Calling",
+              "size": 92,
+              "height": 2,
+              "applicationsProcessed": "12,303",
+              "teamSize": 13
+            },
+            {
+              "name": "Branch Operations",
+              "size": 85,
+              "height": 2,
+              "applicationsProcessed": "8,202",
+              "teamSize": 9
+            },
+            {
+              "name": "SME Direct",
+              "size": 120,
+              "height": 2,
+              "applicationsProcessed": "4,101",
+              "teamSize": 4
             }
           ]
         },
         {
           "name":"CCPL",
-          "size": 22,
+          "size": 147,
           "height":3,
-          "applicationsProcessed": 100,
-          "teamSize": 20
+          "applicationsProcessed": "14,711",
+          "teamSize": 44
         },
         {
           "name":"Insurance Ops",
-          "size": 18,
+          "size": 118,
           "height":3,
-          "applicationsProcessed": 46,
-          "teamSize": 18
+          "applicationsProcessed": "5,686",
+          "teamSize": 8
         },
         {
           "name":"Card Ops",
-          "size": 33,
+          "size": 129,
           "height":3,
-          "applicationsProcessed": 51,
-          "teamSize": 34
+          "applicationsProcessed": "1,22,883",
+          "teamSize": 50
         },
         {
           "name":"Lending Ops",
-          "size": 28,
+          "size": 99,
           "height":3,
-          "applicationsProcessed": 46,
-          "teamSize": 22
+          "applicationsProcessed": "11,708",
+          "teamSize": 11
         },
         {
           "name":"AML Ops",
-          "size": 14,
+          "size": 146,
           "height":3,
-          "applicationsProcessed": 51,
-          "teamSize": 55
+          "applicationsProcessed": 7424,
+          "teamSize": 21
         }
       ]
     }
