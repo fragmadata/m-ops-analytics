@@ -1,18 +1,18 @@
 $(document).ready(function(){
     var gridHeaders = [
-            "EMPLOYEE NAME",
-            "No. of Working Hrs",
+            "Employee Name",
+/*            "No. of Working Hrs",
             "Cycle Time",
             "Vol per Hr",
-            "Total Applications to be processed in Day",
-            "Actual Volumes",
+            "Total Applications to be processed in Day",*/
+            "Volumes",
             "Avg TAT"
         ];
         var gridData = [
-            ["Shiv Shankar",8,15,14,32,33,"103"],
-            ["Sarathi M",8,15,14,32,34,"106"],
-            ["Suganya T",8,15,14,32,25,"78"],
-            ["Sangeetha N",8,15,14,32,26,"81"]
+            ["Shiv Shankar","1,600", 3],
+            ["Sarathi M","1,200",4],
+            ["Suganya T","1,200",2],
+            ["Sangeetha N","800",3]
         ];
         var headerTemplate = $("#tableHeadTemplate").html();
         var bodyTemplate = $("#tableBodyTemplate").html();
@@ -24,11 +24,18 @@ $(document).ready(function(){
                 x:'x',
                 columns :[
                     ['x', '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01','2016-05-01'],
-                    ["Shiv Shankar",85,100,120,95,103],
-                    ["Emp2",100,105,79,85,106],
-                    ["Emp3",50,100,110,90,78],
-                    ["Emp4",81,100,50,95,85]
-                ]
+                    ["Shiv Shankar",2,4,3,4,3],
+                    ["Sarathi M",5,7,8,5,5],
+                    ["Suganya T",1,1,3,2,1],
+                    ["Sangeetha N",1,6,3,4,1]
+                ],
+                type: 'bar',
+                  		colors: {
+                              'Shiv Shankar': '#00b0f0',
+                              'Sarathi M': 'rgba(61, 153, 112, 1)',
+                              'Suganya T': '#03B4C3',
+                  	    'Sangeetha N': "rgb(225, 126,0)"
+                          }
             },
             axis: {
             x: {
