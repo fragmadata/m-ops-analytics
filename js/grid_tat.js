@@ -44,7 +44,7 @@ $(document).ready(function(){
                         },y :{
                                                   show:true,
                                                   label: {
-                                                      text: "Avg TAT (in mins)",
+                                                      text: "Avg TAT (in hrs)",
                                                       position: 'outer-middle'
                                                    }
                                               }
