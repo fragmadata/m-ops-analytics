@@ -78,34 +78,38 @@ tspan.title {
                 <div class="card box2">
                     <ul class="bread-crumb">
                         <li><a href="#">Retail</a></li>
-                        <li><a href="/">Productivity</a></li>
+                        <li><a href="/">Current Utilization Ratio</a></li>
                     </ul>
                     <div class="header-bar">
                         <h4>Retail Productivity</h4>
                     </div>
                     <div class="row">
+                        <div class="col-md-12" style="margin-top:5px;text-align:center">
+                            <div id="sequence" style="text-align:left"></div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
-                            <div class="tile" style="background-color:#00b0f0;height:auto">
-                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Avg Productivity</div>
+                            <div class="tile" style="margin:0px;background-color:#00b0f0;height:auto">
+                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Avg CUR</div>
                                 <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">78%</div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="tile" style="background-color:#39cccc;height:auto">
+                            <div class="tile" style="margin:0px;background-color:#39cccc;height:auto">
                                 <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Total Applications Processed</div>
                                 <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">480</div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="tile" style="background-color:#ffc000;height:auto">
+                            <div class="tile" style="margin:0px;background-color:#ffc000;height:auto">
                                 <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Total Team Size</div>
                                 <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px">32</div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12" style="margin-left:20px;text-align:center">
-                            <div id="sequence" style="text-align:left"></div>
+                        <div class="col-md-12" style="margin-top:20px;margin-left:20px;text-align:center">
                             <div id="chart">
                             </div>
                         </div>
@@ -123,7 +127,7 @@ var radius = Math.min(width, height) / 2;
 
 // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
 var b = {
-  w: 95, h: 30, s: 3, t: 10
+  w: 95, h: 20, s: 3, t: 10
 };
 
   String.prototype.hashCode = function(){
@@ -317,7 +321,7 @@ function initializeBreadcrumbTrail() {
   // Add the svg area.
   var trail = d3.select("#sequence").append("svg:svg")
       .attr("width", width)
-      .attr("height", 50)
+      .attr("height", 20)
       .attr("id", "trail");
   // Add the label at the end, for the percentage.
   trail.append("svg:text")
