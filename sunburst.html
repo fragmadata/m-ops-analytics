@@ -94,10 +94,57 @@ var b = {
   w: 75, h: 30, s: 3, t: 10
 };
 
+  String.prototype.hashCode = function(){
+    var hash = 0;
+    if (this.length == 0) return hash;
+    for (var i = 0; i < this.length; i++) {
+        var character = this.charCodeAt(i);
+        hash = ((hash<<5)-hash)+character;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+    }
+
 // Mapping of step names to colors.
 function colors_google(n) {
-  var colors_g = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
-  return colors_g[n % colors_g.length];
+  //var colors_g = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
+  /*var colors_g = [
+  "#1f77b4",
+  "#ff7f0e",
+  "#2ca02c",
+  "#d62728",
+  "#9467bd",
+  "#fd8d3c",
+  "#e377c2",
+  //"#7f7f7f",
+  //"#bcbd22",
+  "#17becf"
+  ];*/
+  var colors_g = [
+       "#3182bd",
+       "#6baed6",
+       "#9ecae1",
+       "#c6dbef",
+       "#e6550d",
+       "#fd8d3c",
+       "#fdae6b",
+       "#fdd0a2",
+       "#31a354",
+       "#74c476",
+       "#a1d99b",
+       "#c7e9c0",
+       "#756bb1",
+       "#9e9ac8",
+       "#bcbddc",
+       "#dadaeb",
+       "#636363",
+       //"#969696",
+       //"#bdbdbd",
+       //"#d9d9d9"
+  ];
+  var hc = colors_g[Math.abs(n.hashCode()) % colors_g.length];
+  console.log("Returning " + hc + " for " + n);
+  return hc ;
 }
 
 var colors = {
@@ -121,7 +168,7 @@ var vis = d3.select("#chart").append("svg:svg")
 
 var partition = d3.layout.partition()
     .size([2 * Math.PI, radius * radius])
-    .value(function(d) { return d.size; });
+    .value(function(d) { return d.size*d.height*d.height; });
 
 var arc = d3.svg.arc()
     .startAngle(function(d) { return d.x; })
@@ -131,11 +178,96 @@ var arc = d3.svg.arc()
 
 // Use d3.text and d3.csv.parseRows so that we do not need to have a header
 // row, and can receive the csv as an array of arrays.
-d3.text("visit-sequences.csv", function(text) {
-  var csv = d3.csv.parseRows(text);
-  var json = buildHierarchy(csv);
-  createVisualization(json);
-});
+//d3.text("visit-sequences.csv", function(text) {
+//  var csv = d3.csv.parseRows(text);
+//  var json = buildHierarchy(csv);
+    var json = {
+    name:"root",
+    children:
+        [
+            {
+                name:"Retail",
+                size:99,
+                height:4,
+                children : [
+                    {
+                        name:"Liability Ops",
+                        size: 81,
+                        height:3,
+                        children : [
+                            {
+                                name: "CASA",
+                                size: 75,
+                                height: 2,
+                                children : [
+                                    {
+                                        name:"Indexer",
+                                        size:95,
+                                        height:1
+                                    },
+                                    {
+                                        name:"Maker",
+                                        size:75,
+                                        height:1
+                                    },
+                                    {
+                                        name:"Checker",
+                                        size:10,
+                                        height:1
+                                    }
+                                ]
+                            },
+                            {
+                                name: "SME",
+                                size: 88,
+                                height: 2
+                            }
+                        ]
+                    },
+                    {
+                        name:"CCPL",
+                        size: 125,
+                        height:3
+                    },
+                    {
+                        name:"Insurance Ops",
+                        size: 103,
+                        height:3
+                    },
+                    {
+                        name:"Card Ops",
+                        size: 109,
+                        height:3
+                    },
+                    {
+                        name:"Lending Ops",
+                        size: 89,
+                        height:3
+                    },
+                    {
+                        name:"AML Ops",
+                        size: 108,
+                        height:3
+                    }
+                ]
+            },
+            {
+                name:"Others",
+                size:1,
+                height:4
+            }
+        ]
+};
+//  createVisualization(json);
+//});
+
+d3.json("cur_hierarchy.json", function(error, json) {
+    if(error) {
+        console.log("Error while parsing JSON");
+    }
+    createVisualization(json);
+}
+);
 
 // Main function to draw and set up the visualization, once we have the data.
 function createVisualization(json) {
@@ -163,7 +295,7 @@ function createVisualization(json) {
       .attr("display", function(d) { return d.depth ? null : "none"; })
       .attr("d", arc)
       .attr("fill-rule", "evenodd")
-      .style("fill", function(d) { return colors[d.name]; })
+      .style("fill", function(d) { return colors_google(d.name); })
       .style("opacity", 1)
       .on("mouseover", mouseover);
 
@@ -278,7 +410,7 @@ function updateBreadcrumbs(nodeArray, percentageString) {
 
   entering.append("svg:polygon")
       .attr("points", breadcrumbPoints)
-      .style("fill", function(d) { return colors[d.name]; });
+      .style("fill", function(d) { return colors_google(d.name); });
 
   entering.append("svg:text")
       .attr("x", (b.w + b.t) / 2)
@@ -396,64 +528,70 @@ function buildHierarchy(csv) {
   
   root={
     name:"root",
-    size:75,
     children:
         [
             {
                 name:"Retail",
-                size:67,
+                size:99,
                 children : [
                     {
                         name:"Liability Ops",
-                        size: 88,
+                        size: 81,
+                        height:3,
                         children : [
                             {
                                 name: "CASA",
                                 size: 75,
+                                height: 2,
                                 children : [
                                     {
                                         name:"Indexer",
-                                        size:95
+                                        size:95,
+                                        height:1
                                     },
                                     {
                                         name:"Maker",
-                                        size:75
+                                        size:75,
+                                        height:1
                                     },
                                     {
                                         name:"Checker",
-                                        size:10
+                                        size:10,
+                                        height:1
                                     }
                                 ]
                             },
                             {
                                 name: "SME",
-                                size: 88
+                                size: 88,
+                                height: 2
                             }
                         ]
                     },
                     {
-                        name:"Insurance Ops",
-                        size: 78
+                        name:"CCPL",
+                        size: 125,
+                        height:3
                     },
                     {
-                        name:"Credit Ops",
-                        size: 85
+                        name:"Insurance Ops",
+                        size: 103,
+                        height:3
                     },
                     {
                         name:"Card Ops",
-                        size: 65
+                        size: 109,
+                        height:3
                     },
                     {
                         name:"Lending Ops",
-                        size: 70
+                        size: 89,
+                        height:3
                     },
                     {
                         name:"AML Ops",
-                        size: 88
-                    },
-                    {
-                        name:"Others",
-                        size: 53
+                        size: 108,
+                        height:3
                     }
                 ]
             }

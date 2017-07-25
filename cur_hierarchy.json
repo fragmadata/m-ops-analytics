@@ -1,0 +1,77 @@
+{
+  "name":"root",
+  "children":
+  [
+    {
+      "name":"Retail",
+      "size":50,
+      "height":4,
+      "children" : [
+        {
+          "name":"Liability Ops",
+          "size": 81,
+          "height":3,
+          "children" : [
+            {
+              "name": "CASA",
+              "size": 75,
+              "height": 2,
+              "children" : [
+                {
+                  "name":"Indexer",
+                  "size":95,
+                  "height":1
+                },
+                {
+                  "name":"Maker",
+                  "size":75,
+                  "height":1
+                },
+                {
+                  "name":"Checker",
+                  "size":10,
+                  "height":1
+                }
+              ]
+            },
+            {
+              "name": "SME",
+              "size": 88,
+              "height": 2
+            }
+          ]
+        },
+        {
+          "name":"CCPL",
+          "size": 125,
+          "height":3
+        },
+        {
+          "name":"Insurance Ops",
+          "size": 103,
+          "height":3
+        },
+        {
+          "name":"Card Ops",
+          "size": 109,
+          "height":3
+        },
+        {
+          "name":"Lending Ops",
+          "size": 89,
+          "height":3
+        },
+        {
+          "name":"AML Ops",
+          "size": 108,
+          "height":3
+        }
+      ]
+    },
+    {
+      "name":"Others",
+      "size":1,
+      "height":4
+    }
+  ]
+}
