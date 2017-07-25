@@ -78,10 +78,12 @@ tspan.title {
                 <div class="card box2">
                     <ul class="bread-crumb">
                         <li><a href="landing2.html">Retail</a></li>
-                        <li><a href="/">Current Utilization Ratio</a></li>
+                        <li><a href="landing3.html">Liability</a></li>
+                        <li><a href="landing4.html">CASA</a></li>
+                        <li><a href="/">Productivity</a></li>
                     </ul>
                     <div class="header-bar">
-                        <h4>Retail Current Utilization Ratio</h4>
+                        <h4>Retail Productivity</h4>
                     </div>
                     <div class="row">
                         <div class="col-md-12" style="margin-top:5px;text-align:center">
@@ -91,7 +93,7 @@ tspan.title {
                     <div class="row">
                         <div class="col-md-4">
                             <div class="tile" style="margin:0px;background-color:#00b0f0;height:auto">
-                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Avg CUR</div>
+                                <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Avg Productivity</div>
                                 <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px" id="avgCurField">78%</div>
                             </div>
                         </div>
@@ -109,7 +111,7 @@ tspan.title {
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12" style="margin-top:20px;margin-left:20px;text-align:center">
+                        <div class="col-md-12" style="margin-top:20px;margin-left:20px;margin-bottom:40px;text-align:center">
                             <div id="chart">
                             </div>
                         </div>
@@ -122,7 +124,7 @@ tspan.title {
 <script>
 // Dimensions of sunburst.
 var width = 750;
-var height = 500;
+var height = 450;
 var radius = Math.min(width, height) / 2;
 
 // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
@@ -230,7 +232,8 @@ function createVisualization(json) {
       .attr("fill-rule", "evenodd")
       .style("fill", function(d) { return colors_google(d.name); })
       .style("opacity", 1)
-      .on("mouseover", mouseover);
+      .on("mouseover", mouseover)
+      .on("click", arcClicked);
 
   // Add the mouseleave handler to the bounding circle.
   d3.select("#container").on("mouseleave", mouseleave);
@@ -238,6 +241,12 @@ function createVisualization(json) {
   // Get total size of the tree = value of root node from partition.
   totalSize = path.node().__data__.value;
  };
+
+function arcClicked(d) {
+    if(d.name=="Indexer") {
+        window.location.assign("index.html");
+    }
+}
 
 // Fade all but the current sequence, and show it in the breadcrumb trail.
 function mouseover(d) {
@@ -424,7 +433,7 @@ function toggleLegend() {
   }
 }
 
-d3.json("cur_hierarchy.json", function(error, json) {
+d3.json("productivity_hierarchy.json", function(error, json) {
     if(error) {
         console.log("Error while parsing JSON");
     }
