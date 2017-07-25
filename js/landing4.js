@@ -49,7 +49,7 @@
     var efficiencyGraphArea = createChart("efficiencyGraphArea",['data',1.05,.80,.76],"%", "rgb(31, 119, 180)");
     
     var avgTatGraphArea = createChart("avgTatGraphArea",['data',59,75,79],"","rgba(61, 153, 112, 1)");
-    var spanTatGraphArea = createChart("spanTatGraphArea",['data',63,79,83],"","rgba(61, 153, 112, 1)");
+    var spanTatGraphArea = createChart("spanTatGraphArea",['data',.63,.79,.83],"%","rgba(61, 153, 112, 1)");
     var yieldGraphArea = createChart("yieldGraphArea",['data',1.01,.80,.71],"%","rgba(61, 153, 112, 1)");
     
     var pass1ErrorGraphArea = createChart("pass1ErrorGraphArea",['data',59,58,63],"","rgb(225, 126,0)");
