@@ -6,6 +6,8 @@
       "name":"Retail",
       "size":99,
       "height":4,
+      "applicationsProcessed": 345,
+      "teamSize": 214,
       "children" : [
         {
           "name":"Liability Ops",
@@ -55,35 +57,35 @@
         },
         {
           "name":"CCPL",
-          "size": 125,
+          "size": 22,
           "height":3,
           "applicationsProcessed": 100,
           "teamSize": 20
         },
         {
           "name":"Insurance Ops",
-          "size": 103,
+          "size": 18,
           "height":3,
           "applicationsProcessed": 46,
           "teamSize": 18
         },
         {
           "name":"Card Ops",
-          "size": 109,
+          "size": 33,
           "height":3,
           "applicationsProcessed": 51,
           "teamSize": 34
         },
         {
           "name":"Lending Ops",
-          "size": 89,
+          "size": 28,
           "height":3,
           "applicationsProcessed": 46,
           "teamSize": 22
         },
         {
           "name":"AML Ops",
-          "size": 108,
+          "size": 14,
           "height":3,
           "applicationsProcessed": 51,
           "teamSize": 55
