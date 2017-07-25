@@ -4,17 +4,17 @@
   [
     {
       "name":"Retail",
-      "size":99,
+      "size":115,
       "height":4,
-      "applicationsProcessed": 345,
-      "teamSize": 214,
+      "applicationsProcessed": "244,431",
+      "teamSize": 222,
       "children" : [
         {
           "name":"Liability Ops",
-          "size": 81,
+          "size": 88,
           "height":3,
-          "applicationsProcessed": 51,
-          "teamSize": 55,
+          "applicationsProcessed": "82,019",
+          "teamSize": 89,
           "children" : [
             {
               "name": "CASA",
@@ -68,11 +68,6 @@
           "teamSize": 55
         }
       ]
-    },
-    {
-      "name":"Others",
-      "size":1,
-      "height":4
     }
   ]
 }

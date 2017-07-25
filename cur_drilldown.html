@@ -92,7 +92,7 @@ tspan.title {
                         <div class="col-md-4">
                             <div class="tile" style="margin:0px;background-color:#00b0f0;height:auto">
                                 <div class="h4" style="text-align:center;margin-top:0px;margin-bottom:0px">Avg CUR</div>
-                                <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px" id="avgCurField">78%</div>
+                                <div class="h3" style="text-align:center;margin-top:5px;margin-bottom:0px"><span id="avgCurField">78</span><span>&nbsp;%</span></div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -273,7 +273,7 @@ function mouseover(d) {
      .text(d.name + " : " + d.size + "%")
      .attr("class","center");
     $("#transactionsField").html(d.applicationsProcessed);
-    $("#teamSizeField").html(d.applicationsProcessed);
+    $("#teamSizeField").html(d.teamSize);
     $("#avgCurField").html(d.size);
 }
 
