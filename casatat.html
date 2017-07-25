@@ -63,7 +63,7 @@
                         <li><a href="/">TAT (Advanced)</a></li>
                     </ul>
                     <div class="header-bar">
-                        <h4>CASA TAT [28 hrs]</h4>
+                        <h4>CASA TAT [28 mins]</h4>
                     </div>
                     <div class="row">
                         <div class="col-md-8">
@@ -81,11 +81,11 @@
                         <div class="col-md-4 tat-tile-container">
                             <div class="tat-tile" style="background:#39cccc">
                                 <div class="h4">Min TAT</div>
-                                <div class="h2">8 hrs</div>
+                                <div class="h2">8 mins</div>
                             </div>
                             <div class="tat-tile" style="background:#548135">
                                 <div class="h4">Max TAT</div>
-                                <div class="h2">28 hrs</div>
+                                <div class="h2">28 mins</div>
                             </div>
                             <div class="tat-tile" style="background:    #0070c0">
                                 <div class="h4">Total Applications Processed</div>
@@ -107,7 +107,7 @@ $(document).ready(function(){
             padding: {
                 top:15,
                 right: 30,
-                left: 20,
+                left: 50,
             },    
             data:{
                 columns :[
@@ -133,7 +133,11 @@ $(document).ready(function(){
             },
             axis: {
             y :{
-                show:true
+                show:true,
+                label: {
+                    text: "In mins.",
+                    position: 'outer-middle'
+                 }
             },
             x:{
                 type:'category',
