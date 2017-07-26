@@ -72,28 +72,6 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="tile tile-md" style="background-color:#00b0f0">
-                                <span class="h3">CUR</span>
-                                <span class="h3 top-right">89%</span>
-                                <span class="bottom-left h4">
-                                    <span class="bottom-left-content">
-                                        Min
-                                    </span>
-                                    <span class="bottom-left-content">
-                                        Max
-                                    </span>
-                                    <span class="bottom-left-content">
-                                        Avg
-                                    </span>
-                                </span>
-                                <span class="middle-right h4">
-                                    <span class="middle-right-content">Hour</span>
-                                    <span class="middle-right-content">Day</span>
-                                    <span class="middle-right-content">Month</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
                             <div class="tile tile-md" style="background-color:#39cccc">
                                 <span class="h3">Productivity</span>
                                 <span class="h3 top-right">92%</span>
@@ -137,11 +115,9 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-4">
                             <div class="tile tile-md" style="background-color:#ffc000">
-                                <span class="h3">Error</span>
+                                <span class="h3">Errors</span>
                                 <span class="h3 top-right">89%</span>
                                 <span class="bottom-left h4">
                                     <span class="bottom-left-content">
@@ -161,9 +137,33 @@
                                 </span>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="tile tile-md" style="background-color:#00b0f0">
+                                <span class="h3">Rank</span>
+                                <span class="h3 top-right">6</span>
+                                <span class="bottom-left h4">
+                                    <span class="bottom-left-content">
+                                        Min
+                                    </span>
+                                    <span class="bottom-left-content">
+                                        Max
+                                    </span>
+                                    <span class="bottom-left-content">
+                                        Avg
+                                    </span>
+                                </span>
+                                <span class="middle-right h4">
+                                    <span class="middle-right-content">Hour</span>
+                                    <span class="middle-right-content">Day</span>
+                                    <span class="middle-right-content">Month</span>
+                                </span>
+                            </div>
+                        </div>
                         <div class="col-md-4">
                             <div class="tile tile-md" style="background-color:#0070c0">
-                                <span class="h3">Efficiency</span>
+                                <span class="h3">Performance</span>
                                 <span class="h3 top-right">68%</span>
                                 <span class="bottom-left h4">
                                     <span class="bottom-left-content">
@@ -185,20 +185,34 @@
                         </div>
                         <div class="col-md-4">
                             <div class="tile tile-md" style="background-color:#8eaadb">
-                                <span class="h3">Performance</span>
-                                <span class="bottom-left h4">
-                                    <span class="bottom-left-content">
-                                        Min
-                                    </span>
-                                    <span class="bottom-left-content">
-                                        Max
-                                    </span>
-                                    <span class="bottom-left-content">
-                                        Avg
-                                    </span>
-                                </span>
+                                <span class="h3">Insights</span>
+                                <br/>
+                                <br/>
+                                <div>
+                                    1. The agent does well in the morning hours of the day. <br/>
+                                    2. The agent's performance has been consistent for the past three months.
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="tile tile-md" style="height: auto !important">
+                                <h5 style="color:#1b4597">Productivity Trend</h6>
+                                <div id="productivityChart">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="height: auto !important">
+                            <div class="tile tile-md">
+                                <h5 style="color:#1b4597">TAT Trend</h6>
+                                <div id="tatChart">
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -206,6 +220,83 @@
     </div>
 </div>
 <script src="js/app.js"></script>
-<script src="js/tree.js"></script>
+    <script>
+$(document).ready(function(){
+    var productivityChart = c3.generate({
+            bindto : "#productivityChart",
+ 
+            padding: {
+                top:15,
+                right: 30,
+                left: 50,
+            },    
+            data:{
+                columns :[
+                    ["Shiv Shankar",85,
+100
+,120
+,95
+,103 ]
+                ],
+                type:'bar',
+                labels : {
+                    format:{
+                        data : d3.format("%")
+                    }
+                }
+            },
+            axis: {
+            y :{
+                show:true,
+                label: {
+                    text: "Percentages",
+                    position: 'outer-middle'
+                 }
+            },
+            x:{
+                type:'category',
+                categories : ['Mar 17','Apr 17','May 17','Jun 17','Jul 17']
+            },
+                interaction : {
+                enabled : false
+            }
+        }
+    
+    });
+    
+ 
+        
+    var tatChart = c3.generate({
+            bindto : "#tatChart",
+            padding: {
+                top:15,
+                right: 30,
+                left: 50,
+            },    
+            data:{
+                columns :[
+                    ["Shiv Shankar",2,4,3,3,3 ]
+                ],
+                type:'bar',
+                colors: {
+                'Shiv Shankar': '#00b0f0'
+                 }
+            },
+            axis: {
+            y :{
+                show:true,
+                label: {
+                    text: "In mins.",
+                    position: 'outer-middle'
+                 }
+            },
+            x:{
+                type:'category',
+                categories : ['Mar 17','Apr 17','May 17','Jun 17','Jul 17']
+            }
+        }
+    });
+});
+</script>
 </body>
 </html>

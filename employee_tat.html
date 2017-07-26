@@ -196,11 +196,108 @@
                             </div>
                         </div>
                     </div>
+                                        <div class="row">
+                        <div class="col-md-6">
+                            <div class="tile tile-md" style="height: auto !important">
+                                <h5 style="color:#1b4597">Productivity Trend</h6>
+                                <div id="productivityChart">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="height: auto !important">
+                            <div class="tile tile-md">
+                                <h5 style="color:#1b4597">TAT Trend</h6>
+                                <div id="tatChart">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script src="js/app.js"></script>
+    <script>
+$(document).ready(function(){
+    var productivityChart = c3.generate({
+            bindto : "#productivityChart",
+ 
+            padding: {
+                top:15,
+                right: 30,
+                left: 50,
+            },    
+            data:{
+                columns :[
+                    ["Shiv Shankar",85,
+100
+,120
+,95
+,103 ]
+                ],
+                type:'bar',
+                labels : {
+                    format:{
+                        data : d3.format("%")
+                    }
+                }
+            },
+            axis: {
+            y :{
+                show:true,
+                label: {
+                    text: "Percentages",
+                    position: 'outer-middle'
+                 }
+            },
+            x:{
+                type:'category',
+                categories : ['Mar 17','Apr 17','May 17','Jun 17','Jul 17']
+            },
+                interaction : {
+                enabled : false
+            }
+        }
+    
+    });
+    
+ 
+        
+    var tatChart = c3.generate({
+            bindto : "#tatChart",
+            padding: {
+                top:15,
+                right: 30,
+                left: 50,
+            },    
+            data:{
+                columns :[
+                    ["Shiv Shankar",2,4,3,3,3 ]
+                ],
+                type:'bar',
+                colors: {
+                'Shiv Shankar': '#00b0f0'
+                 }
+            },
+            axis: {
+            y :{
+                show:true,
+                label: {
+                    text: "In mins.",
+                    position: 'outer-middle'
+                 }
+            },
+            x:{
+                type:'category',
+                categories : ['Mar 17','Apr 17','May 17','Jun 17','Jul 17']
+            }
+        }
+    });
+});
+</script>
 </body>
 </html>
