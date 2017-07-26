@@ -240,8 +240,8 @@ $(document).ready(function(){
                 ],
                 type:'bar',
                 labels : {
-                    format:{
-                        data : d3.format("%")
+                    format: function (v, id, i, j) {
+                            return v + " %";
                     }
                 }
             },
@@ -278,6 +278,14 @@ $(document).ready(function(){
                     ["Shiv Shankar",2,4,3,3,3 ]
                 ],
                 type:'bar',
+                labels: 
+                
+{
+                    format: function (v, id, i, j) {
+                            return v + " mins";
+                    }
+                }                
+                ,
                 colors: {
                 'Shiv Shankar': '#00b0f0'
                  }
